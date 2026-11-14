@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lavalou</title>
+<meta name="description" content="Lavalou: games and tools made for family and fun.">
+<link rel="icon" href="/lavalou/assets/favicon.svg" type="image/svg+xml">
+<style>
+  @font-face { font-family:"Titan One"; src:url(/lavalou/assets/fonts/titan-one.woff2) format("woff2"); font-display:swap; }
+  @font-face { font-family:"Andika"; src:url(/lavalou/assets/fonts/andika-400.woff2) format("woff2"); font-weight:400; font-display:swap; }
+  @font-face { font-family:"Andika"; src:url(/lavalou/assets/fonts/andika-700.woff2) format("woff2"); font-weight:700; font-display:swap; }
+  :root { --ink:#24123d; --muted:#5d4f73; --bg:#fff8ee; --card:#ffffff; --pink:#ff5d8f; --teal:#18a999; --sun:#ffc53d; --line:#f0e3d0; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:18px/1.55 "Andika", ui-sans-serif, system-ui, sans-serif; }
+  .wrap { width:min(1040px, 100% - 40px); margin:0 auto; }
+  header { padding:48px 0 32px; }
+  .back { font-size:15px; color:var(--muted); text-decoration:none; }
+  .back:hover { color:var(--ink); }
+  .logo { display:flex; align-items:center; gap:14px; margin:28px 0 10px; }
+  .dots { position:relative; width:64px; height:44px; flex:none; }
+  .dots i { position:absolute; top:6px; width:32px; height:32px; border-radius:50%; mix-blend-mode:multiply; }
+  .dots i:nth-child(1){ left:0; background:var(--pink); } .dots i:nth-child(2){ left:16px; background:var(--sun); } .dots i:nth-child(3){ left:32px; background:var(--teal); }
+  h1 { font-family:"Titan One", system-ui, sans-serif; font-weight:400; font-size:clamp(44px, 8vw, 72px); line-height:1; margin:0; letter-spacing:.01em; }
+  .tag { color:var(--muted); font-size:20px; margin:8px 0 0; }
+  h2 { font-family:"Titan One", system-ui, sans-serif; font-weight:400; font-size:28px; margin:24px 0 18px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; padding-bottom:56px; }
+  .card { background:var(--card); border:2px solid var(--line); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; }
+  .card img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:#1b1530; }
+  .body { padding:20px 22px 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .card h3 { font-family:"Titan One", system-ui, sans-serif; font-weight:400; font-size:24px; line-height:1.15; margin:0; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px; }
+  .pill { font-size:13px; font-weight:700; padding:3px 10px; border-radius:999px; background:#f4eefc; color:#5b3b8c; }
+  .card p { margin:0; color:var(--muted); font-size:16px; }
+  .actions { margin-top:auto; padding-top:8px; display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; }
+  .play { font-family:"Titan One", system-ui, sans-serif; font-size:18px; color:#fff; background:var(--pink); text-decoration:none;
+          padding:10px 22px; border-radius:999px; box-shadow:0 4px 0 #c93a68; }
+  .play:hover { transform:translateY(1px); box-shadow:0 3px 0 #c93a68; }
+  .guides { font-size:14px; color:var(--muted); }
+  .guides a { color:var(--ink); }
+  footer { border-top:2px solid var(--line); padding:24px 0 40px; color:var(--muted); font-size:15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="/">&larr; Lara Borowsky</a>
+    <div class="logo"><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><h1>Lavalou</h1></div>
+    <p class="tag">Games and tools made for family and fun.</p>
+  </header>
+
+  <h2>Games</h2>
+  <section class="grid">
+    <article class="card">
+      <img src="/lavalou/assets/cluck-quest-title.png" alt="Cluck Quest title screen" loading="lazy">
+      <div class="body">
+        <h3>Cluck Quest: Night of the Jester Pumpkin</h3>
+        <div class="meta"><span class="pill">3rd-grade math</span><span class="pill">iPad, phone, computer</span></div>
+        <p>Jack O'Jester let the city's chickens loose. Pick a hero, beat silly bosses with addition, subtraction, multiplication and division, and bring every chicken home before sunrise.</p>
+        <div class="actions">
+          <a class="play" href="/lavalou/cluck-quest">Play</a>
+          <span class="guides">Guides: <a href="/lavalou/cluck-quest/guides/user-manual.pdf">Manual</a> &middot; <a href="/lavalou/cluck-quest/guides/reference-sheet.pdf">Reference</a> &middot; <a href="/lavalou/cluck-quest/guides/why-should-i-play.pdf">For kids</a></span>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <img src="/lavalou/assets/cluck-quest-2-title.png" alt="Cluck Quest 2 title screen" loading="lazy">
+      <div class="body">
+        <h3>Cluck Quest 2: Night of the Floating Flamingo</h3>
+        <div class="meta"><span class="pill">3rd-grade spelling</span><span class="pill">iPad, phone, computer</span></div>
+        <p>Flo the flamingo float blew the chickens all over Starfruit Park. Spell your way through rides, carnival games and a space zoo. Grown-ups can add their own spelling list.</p>
+        <div class="actions">
+          <a class="play" href="/lavalou/cluck-quest-2">Play</a>
+          <span class="guides">Guides: <a href="/lavalou/cluck-quest-2/guides/user-manual.pdf">Manual</a> &middot; <a href="/lavalou/cluck-quest-2/guides/reference-sheet.pdf">Reference</a> &middot; <a href="/lavalou/cluck-quest-2/guides/why-should-i-play.pdf">For kids</a></span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <footer>Made by Lara with Claude. Progress saves in your browser on each device.</footer>
+</div>
+</body>
+</html>
