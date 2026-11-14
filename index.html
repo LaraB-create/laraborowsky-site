@@ -16,12 +16,19 @@
   h1 { font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; font-weight:400; font-size:clamp(44px, 8vw, 76px);
        line-height:1.02; letter-spacing:-.02em; margin:0 0 24px; }
   p.lede { font-size:20px; color:var(--muted); max-width:34ch; margin:0 0 48px; }
-  .links { display:grid; gap:0; border-top:1px solid var(--line); }
-  .links a { display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:20px 0;
-             border-bottom:1px solid var(--line); color:var(--ink); text-decoration:none; }
-  .links a span:first-child { font-family: Georgia, serif; font-size:24px; }
-  .links a span:last-child { color:var(--muted); font-size:15px; }
-  .links a:hover span:first-child { color:var(--accent); }
+  .lavalou { position:relative; overflow:hidden; display:flex; flex-wrap:wrap; align-items:center; gap:18px 32px;
+             padding:28px 32px; border-radius:22px; background:#2446CC; color:#FFF8E8; text-decoration:none;
+             transition:transform .18s, box-shadow .18s; box-shadow:0 0 0 0 #D7F442; }
+  .lavalou:hover { transform:translateY(-2px); box-shadow:6px 6px 0 0 #D7F442; }
+  .lavalou:focus-visible { outline:3px solid #D7F442; outline-offset:3px; }
+  .lavalou img { position:relative; width:240px; height:auto; flex:none; display:block; }
+  .lv-text { position:relative; flex:1 1 220px; padding-right:48px; font-size:18px; line-height:1.4; font-weight:600; }
+  .lv-kicker { display:block; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; opacity:.75; margin-bottom:4px; }
+  .lv-arrow { display:inline-block; transition:transform .18s; }
+  .lavalou:hover .lv-arrow { transform:translateX(4px); }
+  .lv-blob { position:absolute; width:110px; height:100px; right:-38px; top:-42px; background:#D7F442;
+             border-radius:42% 58% 63% 37% / 45% 40% 60% 55%; opacity:.95; }
+  @media (max-width:560px) { .lavalou { padding:24px; } .lavalou img { width:220px; } }
   .soon { color:var(--muted); font-size:15px; margin-top:28px; }
   footer { width:min(720px, 100% - 48px); margin:0 auto; padding:24px 0 32px; color:var(--muted); font-size:14px; }
 </style>
@@ -31,9 +38,11 @@
   <p class="kicker">Lara Borowsky</p>
   <h1>Marketing, brand systems, and things I build.</h1>
   <p class="lede">A home for my professional work and the tools I make along the way.</p>
-  <nav class="links">
-    <a href="/lavalou"><span>Lavalou</span><span>Games and tools for family and fun &rarr;</span></a>
-  </nav>
+  <a class="lavalou" href="/lavalou" aria-label="Lavalou: games and tools for family and fun">
+    <span class="lv-blob" aria-hidden="true"></span>
+    <img src="/lavalou/assets/brand/lavalou-horizontal-lime.svg" alt="" width="240" height="99">
+    <span class="lv-text"><span class="lv-kicker">My creative label</span>Games and tools I make for family and fun <span class="lv-arrow">&rarr;</span></span>
+  </a>
   <p class="soon">Portfolio and professional work coming soon.</p>
 </main>
 <footer>&copy; <span id="y">2026</span> Lara Borowsky</footer>
