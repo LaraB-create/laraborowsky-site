@@ -3,7 +3,10 @@
 Source for laraborowsky.com. Plain HTML, no build step. Vercel publishes every push to `main`.
 
 ## Layout
-- `index.html`: home page
+- `index.html`: home page (landing)
+- `about.html`: About page (served at /about)
+- `assets/site.css`, `assets/site.js`: shared styles, light/dark mode, reading settings and the TL;DR / Rabbit Hole switch (settings are saved in the visitor's browser only)
+- `assets/fonts/`: OpenDyslexic for the reading-settings typeface option
 - `lavalou/`: the Lavalou section (lavalou.fun redirects here)
   - `cluck-quest/`: Cluck Quest 1 (math) and its guides
   - `cluck-quest-2/`: Cluck Quest 2 (spelling) and its guides
