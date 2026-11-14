@@ -3,62 +3,114 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lavalou</title>
-<meta name="description" content="Lavalou: games and tools made for family and fun.">
-<link rel="icon" href="/lavalou/assets/favicon.svg" type="image/svg+xml">
+<title>Lavalou: games and tools for family and fun</title>
+<meta name="description" content="Lavalou is Lara Borowsky's creative label: games and tools made for family and fun.">
+<link rel="icon" href="/lavalou/assets/icons/favicon.ico" sizes="any">
+<link rel="icon" href="/lavalou/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/lavalou/assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="/lavalou/assets/icons/site.webmanifest">
+<meta name="theme-color" content="#2446CC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lavalou">
+<meta property="og:description" content="Games and tools made for family and fun.">
+<meta property="og:url" content="https://www.laraborowsky.com/lavalou">
+<meta property="og:image" content="https://www.laraborowsky.com/lavalou/assets/brand/social-share.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-  @font-face { font-family:"Titan One"; src:url(/lavalou/assets/fonts/titan-one.woff2) format("woff2"); font-display:swap; }
-  @font-face { font-family:"Andika"; src:url(/lavalou/assets/fonts/andika-400.woff2) format("woff2"); font-weight:400; font-display:swap; }
-  @font-face { font-family:"Andika"; src:url(/lavalou/assets/fonts/andika-700.woff2) format("woff2"); font-weight:700; font-display:swap; }
-  :root { --ink:#24123d; --muted:#5d4f73; --bg:#fff8ee; --card:#ffffff; --pink:#ff5d8f; --teal:#18a999; --sun:#ffc53d; --line:#f0e3d0; }
+  :root {
+    --cobalt:#2446CC; --lime:#D7F442; --ivory:#FFF8E8; --midnight:#111A3B;
+    --cobalt-deep:#1B37A6; --line:rgba(36,70,204,.18);
+  }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:18px/1.55 "Andika", ui-sans-serif, system-ui, sans-serif; }
-  .wrap { width:min(1040px, 100% - 40px); margin:0 auto; }
-  header { padding:48px 0 32px; }
-  .back { font-size:15px; color:var(--muted); text-decoration:none; }
-  .back:hover { color:var(--ink); }
-  .logo { display:flex; align-items:center; gap:14px; margin:28px 0 10px; }
-  .dots { position:relative; width:64px; height:44px; flex:none; }
-  .dots i { position:absolute; top:6px; width:32px; height:32px; border-radius:50%; mix-blend-mode:multiply; }
-  .dots i:nth-child(1){ left:0; background:var(--pink); } .dots i:nth-child(2){ left:16px; background:var(--sun); } .dots i:nth-child(3){ left:32px; background:var(--teal); }
-  h1 { font-family:"Titan One", system-ui, sans-serif; font-weight:400; font-size:clamp(44px, 8vw, 72px); line-height:1; margin:0; letter-spacing:.01em; }
-  .tag { color:var(--muted); font-size:20px; margin:8px 0 0; }
-  h2 { font-family:"Titan One", system-ui, sans-serif; font-weight:400; font-size:28px; margin:24px 0 18px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; padding-bottom:56px; }
-  .card { background:var(--card); border:2px solid var(--line); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; }
-  .card img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:#1b1530; }
-  .body { padding:20px 22px 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
-  .card h3 { font-family:"Titan One", system-ui, sans-serif; font-weight:400; font-size:24px; line-height:1.15; margin:0; }
-  .meta { display:flex; flex-wrap:wrap; gap:8px; }
-  .pill { font-size:13px; font-weight:700; padding:3px 10px; border-radius:999px; background:#f4eefc; color:#5b3b8c; }
-  .card p { margin:0; color:var(--muted); font-size:16px; }
-  .actions { margin-top:auto; padding-top:8px; display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; }
-  .play { font-family:"Titan One", system-ui, sans-serif; font-size:18px; color:#fff; background:var(--pink); text-decoration:none;
-          padding:10px 22px; border-radius:999px; box-shadow:0 4px 0 #c93a68; }
-  .play:hover { transform:translateY(1px); box-shadow:0 3px 0 #c93a68; }
-  .guides { font-size:14px; color:var(--muted); }
-  .guides a { color:var(--ink); }
-  footer { border-top:2px solid var(--line); padding:24px 0 40px; color:var(--muted); font-size:15px; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--ivory); color:var(--midnight);
+         font:17px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  a { color:inherit; }
+  .wrap { width:min(1080px, 100% - 40px); margin:0 auto; }
+
+  /* Hero: cobalt dominant, lime logo */
+  .hero { position:relative; overflow:hidden; background:var(--cobalt); color:var(--ivory); }
+  .hero .wrap { position:relative; z-index:1; padding:28px 0 72px; }
+  .topbar { display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:15px; }
+  .topbar a { text-decoration:none; opacity:.85; }
+  .topbar a:hover { opacity:1; text-decoration:underline; text-underline-offset:3px; }
+  .logo { display:block; width:min(560px, 100%); height:auto; margin:56px 0 20px -1.5%; }
+  .tagline { font-size:clamp(22px, 3.2vw, 30px); font-weight:700; letter-spacing:-.01em; line-height:1.2; margin:0 0 10px; }
+  .sub { font-size:18px; margin:0; max-width:40ch; opacity:.9; }
+  /* the lime doing something weird: slow lava blobs */
+  .blob { position:absolute; z-index:0; background:var(--lime); border-radius:42% 58% 63% 37% / 45% 40% 60% 55%;
+          animation:ooze 18s ease-in-out infinite alternate; }
+  .blob.one { width:340px; height:300px; right:-90px; top:-70px; opacity:.95; }
+  .blob.two { width:150px; height:170px; right:180px; bottom:-60px; animation-duration:23s; animation-delay:-6s; }
+  @keyframes ooze {
+    0%   { border-radius:42% 58% 63% 37% / 45% 40% 60% 55%; transform:translate(0,0) rotate(0deg); }
+    50%  { border-radius:63% 37% 41% 59% / 58% 62% 38% 42%; transform:translate(-18px,26px) rotate(14deg); }
+    100% { border-radius:38% 62% 52% 48% / 36% 55% 45% 64%; transform:translate(10px,-14px) rotate(-8deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { .blob { animation:none; } }
+  @media (max-width:640px) { .blob.one { width:200px; height:180px; right:-80px; top:-60px; } .blob.two { display:none; } .logo { margin-top:40px; } }
+
+  /* Sections */
+  main { padding:64px 0 24px; }
+  .section-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:24px; }
+  h2 { font-size:30px; line-height:1.1; letter-spacing:-.02em; margin:0; color:var(--cobalt); }
+  .count { font-size:15px; color:var(--cobalt); opacity:.8; }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr)); gap:28px; }
+  .card { position:relative; background:#fff; border:2px solid var(--cobalt); border-radius:24px; overflow:hidden;
+          display:flex; flex-direction:column; box-shadow:8px 8px 0 var(--lime); transition:transform .18s, box-shadow .18s; }
+  .card:hover { transform:translate(-2px,-2px); box-shadow:10px 10px 0 var(--lime); }
+  .card img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:var(--midnight); border-bottom:2px solid var(--cobalt); }
+  .body { padding:22px 24px 26px; display:flex; flex-direction:column; gap:12px; flex:1; }
+  .card h3 { font-size:23px; line-height:1.2; letter-spacing:-.01em; margin:0; color:var(--midnight); }
+  .card h3 span { display:block; font-size:16px; font-weight:600; color:var(--cobalt); margin-top:4px; letter-spacing:0; }
+  .tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .tag { font-size:13px; font-weight:700; padding:4px 11px; border-radius:999px; background:var(--lime); color:var(--midnight); }
+  .tag.alt { background:transparent; color:var(--cobalt); border:1.5px solid var(--line); }
+  .card p { margin:0; font-size:16px; color:var(--midnight); opacity:.85; }
+  .actions { margin-top:auto; padding-top:6px; display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; }
+  .play { display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:17px; color:var(--ivory); background:var(--cobalt);
+          text-decoration:none; padding:11px 24px; border-radius:999px; transition:background .15s; }
+  .play:hover { background:var(--cobalt-deep); }
+  .play:focus-visible, a:focus-visible { outline:3px solid var(--lime); outline-offset:3px; }
+  .guides { font-size:14px; color:var(--midnight); opacity:.8; }
+  .guides a { color:var(--cobalt); font-weight:600; }
+
+  .soon { margin:56px 0 0; padding:26px 28px; border:2px dashed var(--line); border-radius:24px; display:flex; gap:18px; align-items:center; }
+  .soon img { width:44px; height:auto; flex:none; }
+  .soon p { margin:0; color:var(--midnight); }
+  .soon strong { color:var(--cobalt); }
+
+  footer { margin-top:72px; background:var(--midnight); color:var(--ivory); }
+  footer .wrap { padding:36px 0 40px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:center; justify-content:space-between; }
+  footer img { width:180px; height:auto; display:block; }
+  footer p { margin:0; font-size:15px; opacity:.85; }
+  footer a { text-underline-offset:3px; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <a class="back" href="/">&larr; Lara Borowsky</a>
-    <div class="logo"><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><h1>Lavalou</h1></div>
-    <p class="tag">Games and tools made for family and fun.</p>
-  </header>
+<header class="hero">
+  <div class="blob one" aria-hidden="true"></div>
+  <div class="blob two" aria-hidden="true"></div>
+  <div class="wrap">
+    <nav class="topbar"><a href="/">&larr; Lara Borowsky</a></nav>
+    <h1 style="margin:0"><img class="logo" src="/lavalou/assets/brand/lavalou-horizontal-lime.svg" alt="Lavalou" width="560" height="230"></h1>
+    <p class="tagline">A little molten. A little strange.</p>
+    <p class="sub">Games and tools I make for my family and for fun.</p>
+  </div>
+</header>
 
-  <h2>Games</h2>
+<main class="wrap">
+  <div class="section-head"><h2>Games</h2><span class="count">2 to play</span></div>
   <section class="grid">
     <article class="card">
       <img src="/lavalou/assets/cluck-quest-title.png" alt="Cluck Quest title screen" loading="lazy">
       <div class="body">
-        <h3>Cluck Quest: Night of the Jester Pumpkin</h3>
-        <div class="meta"><span class="pill">3rd-grade math</span><span class="pill">iPad, phone, computer</span></div>
+        <h3>Cluck Quest<span>Night of the Jester Pumpkin</span></h3>
+        <div class="tags"><span class="tag">3rd-grade math</span><span class="tag alt">iPad, phone, computer</span></div>
         <p>Jack O'Jester let the city's chickens loose. Pick a hero, beat silly bosses with addition, subtraction, multiplication and division, and bring every chicken home before sunrise.</p>
         <div class="actions">
-          <a class="play" href="/lavalou/cluck-quest">Play</a>
+          <a class="play" href="/lavalou/cluck-quest">Play &rarr;</a>
           <span class="guides">Guides: <a href="/lavalou/cluck-quest/guides/user-manual.pdf">Manual</a> &middot; <a href="/lavalou/cluck-quest/guides/reference-sheet.pdf">Reference</a> &middot; <a href="/lavalou/cluck-quest/guides/why-should-i-play.pdf">For kids</a></span>
         </div>
       </div>
@@ -66,18 +118,28 @@
     <article class="card">
       <img src="/lavalou/assets/cluck-quest-2-title.png" alt="Cluck Quest 2 title screen" loading="lazy">
       <div class="body">
-        <h3>Cluck Quest 2: Night of the Floating Flamingo</h3>
-        <div class="meta"><span class="pill">3rd-grade spelling</span><span class="pill">iPad, phone, computer</span></div>
+        <h3>Cluck Quest 2<span>Night of the Floating Flamingo</span></h3>
+        <div class="tags"><span class="tag">3rd-grade spelling</span><span class="tag alt">iPad, phone, computer</span></div>
         <p>Flo the flamingo float blew the chickens all over Starfruit Park. Spell your way through rides, carnival games and a space zoo. Grown-ups can add their own spelling list.</p>
         <div class="actions">
-          <a class="play" href="/lavalou/cluck-quest-2">Play</a>
+          <a class="play" href="/lavalou/cluck-quest-2">Play &rarr;</a>
           <span class="guides">Guides: <a href="/lavalou/cluck-quest-2/guides/user-manual.pdf">Manual</a> &middot; <a href="/lavalou/cluck-quest-2/guides/reference-sheet.pdf">Reference</a> &middot; <a href="/lavalou/cluck-quest-2/guides/why-should-i-play.pdf">For kids</a></span>
         </div>
       </div>
     </article>
   </section>
 
-  <footer>Made by Lara with Claude. Progress saves in your browser on each device.</footer>
-</div>
+  <div class="soon">
+    <img src="/lavalou/assets/brand/lavalou-lamp-primary.svg" alt="" width="44" height="78">
+    <p><strong>More bubbling up.</strong> Family tools and new games will land here as they're ready.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/lavalou/assets/brand/lavalou-horizontal-ivory.svg" alt="Lavalou" width="180" height="74">
+    <p>Lavalou is the creative label of <a href="/">Lara Borowsky</a>. Made with Claude. Game progress saves in your browser on each device.</p>
+  </div>
+</footer>
 </body>
 </html>

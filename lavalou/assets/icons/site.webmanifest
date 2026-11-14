@@ -1,0 +1,13 @@
+{
+  "name": "Lavalou",
+  "short_name": "Lavalou",
+  "start_url": "/lavalou",
+  "scope": "/lavalou/",
+  "icons": [
+    { "src": "/lavalou/assets/icons/android-chrome-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/lavalou/assets/icons/android-chrome-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#2446CC",
+  "background_color": "#FFF8E8",
+  "display": "standalone"
+}
