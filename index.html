@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lara Borowsky</title>
+<meta name="description" content="Lara Borowsky: marketing, brand systems, and things I build with AI.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+  :root { --ink:#1d1b19; --muted:#6b645c; --paper:#f7f3ec; --accent:#c4542b; --line:#e3dccf; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; flex-direction:column; background:var(--paper); color:var(--ink);
+         font:17px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { flex:1; width:min(720px, 100% - 48px); margin:0 auto; padding:14vh 0 64px; }
+  .kicker { font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 18px; }
+  h1 { font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; font-weight:400; font-size:clamp(44px, 8vw, 76px);
+       line-height:1.02; letter-spacing:-.02em; margin:0 0 24px; }
+  p.lede { font-size:20px; color:var(--muted); max-width:34ch; margin:0 0 48px; }
+  .links { display:grid; gap:0; border-top:1px solid var(--line); }
+  .links a { display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:20px 0;
+             border-bottom:1px solid var(--line); color:var(--ink); text-decoration:none; }
+  .links a span:first-child { font-family: Georgia, serif; font-size:24px; }
+  .links a span:last-child { color:var(--muted); font-size:15px; }
+  .links a:hover span:first-child { color:var(--accent); }
+  .soon { color:var(--muted); font-size:15px; margin-top:28px; }
+  footer { width:min(720px, 100% - 48px); margin:0 auto; padding:24px 0 32px; color:var(--muted); font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Lara Borowsky</p>
+  <h1>Marketing, brand systems, and things I build.</h1>
+  <p class="lede">A home for my professional work and the tools I make along the way.</p>
+  <nav class="links">
+    <a href="/lavalou"><span>Lavalou</span><span>Games and tools for family and fun &rarr;</span></a>
+  </nav>
+  <p class="soon">Portfolio and professional work coming soon.</p>
+</main>
+<footer>&copy; <span id="y">2026</span> Lara Borowsky</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
