@@ -5,13 +5,13 @@
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "lavalou.fun" }],
-      "destination": "https://laraborowsky.com/lavalou/:path*",
+      "destination": "https://www.laraborowsky.com/lavalou/:path*",
       "permanent": false
     },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.lavalou.fun" }],
-      "destination": "https://laraborowsky.com/lavalou/:path*",
+      "destination": "https://www.laraborowsky.com/lavalou/:path*",
       "permanent": false
     }
   ]
