@@ -288,3 +288,13 @@ html[data-font="hyper"] .display, html[data-font="hyper"] .hero h1, html[data-fo
 .card.warren { border-style: dashed; border-top: 3px solid var(--ink); background-image: none; background-color: var(--surface); }
 .card.warren::after { display: none; }
 .card.warren h3::before { content: ""; display: inline-block; width: .55em; height: .7em; margin-right: .35em; border: 2px solid currentColor; border-radius: 2px 2px 3px 3px; vertical-align: .02em; box-shadow: inset 0 .28em 0 -.12em currentColor; }
+
+/* Literary opening */
+.opening-chapter { max-width: 34em; line-height: 1.35; }
+.opening-chapter .t { font-weight: 300; color: var(--muted); }
+.hero h1 { font-size: clamp(2.8rem, 6.2vw, 5.4rem); }
+.opening { margin: 1.6rem 0 0; max-width: 32em; font-family: var(--f-serif); font-weight: 300; font-size: 1.32rem; line-height: 1.5; }
+.opening::first-letter { float: left; font-family: var(--f-display); font-weight: 800; font-size: 3.9em; line-height: .78; padding: .06em .12em 0 0; color: var(--accent-text); }
+.hero .lede { margin-top: 1.2rem; font-size: 1.05rem; color: var(--muted); }
+.apology { margin: .8rem 0 0; font-family: var(--f-mono); font-size: .72rem; letter-spacing: .08em; color: var(--muted); }
+html[data-font="dyslexic"] .opening, html[data-font="hyper"] .opening { font-size: 1.15rem; }
