@@ -360,3 +360,44 @@ html[data-contrast="high"] a:focus-visible, html[data-contrast="high"] button:fo
 .a11y-list { margin: 2rem 0 0; padding: 0; list-style: none; max-width: 46em; border-top: 1px solid var(--ink); }
 .a11y-list li { padding: 1rem 0; border-bottom: 1px solid var(--line); }
 .a11y-p { margin: 1.6rem 0 0; max-width: 40em; font-size: 1.1rem; }
+
+/* The little door */
+:root { --door-dark: #1B1A17; }
+html[data-theme="dark"] { --door-dark: #000000; }
+.door-wrap { margin-top: 2.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 2.5rem 4rem; padding: 2.6rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+.door-art { position: relative; flex: 0 0 auto; width: 200px; height: 260px; color: var(--ink); perspective: 700px; }
+.door-art svg { position: absolute; left: 0; top: 0; width: 200px; height: 260px; }
+.door-leaf { transform-origin: 15% 50%; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.door-wrap:hover .door-leaf, .door-wrap:focus-within .door-leaf { transform: rotateY(-38deg); }
+.door-key { width: 120px !important; height: 50px !important; left: 150px !important; top: 196px !important; transform: rotate(-12deg); }
+.door-copy { flex: 1 1 340px; min-width: 0; }
+.door-copy p { margin: 1.2rem 0 1.6rem; max-width: 34em; font-size: 1.1rem; }
+.door-copy .door-note { margin: .9rem 0 0; font-family: var(--f-serif); font-style: italic; font-size: 1rem; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { html:not([data-motion="on"]) .door-leaf { transition: none; } html:not([data-motion="on"]) .door-wrap:hover .door-leaf { transform: none; } }
+html[data-motion="off"] .door-leaf { transition: none; }
+html[data-motion="off"] .door-wrap:hover .door-leaf, html[data-motion="off"] .door-wrap:focus-within .door-leaf { transform: none; }
+@media (max-width: 560px) { .door-wrap { padding: 1.6rem; } .door-key { left: 120px !important; } }
+
+/* Contact form */
+.contact-wrap { display: flex; flex-wrap: wrap; gap: 2.5rem 4rem; border-top: 1px solid var(--ink); padding-top: 2.4rem; }
+.contact-form { flex: 999 1 460px; min-width: 0; max-width: 36rem; display: flex; flex-direction: column; gap: 1.4rem; }
+.contact-aside { flex: 1 1 240px; }
+.field { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: .45rem; }
+.field label, .field legend { font-weight: 600; font-size: 1rem; padding: 0; }
+.field input[type="text"], .field input[type="email"], .field textarea {
+  font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--control); border-radius: 6px; padding: .75rem .9rem; min-height: 48px; width: 100%;
+}
+.field textarea { resize: vertical; min-height: 9rem; }
+.field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hint, .hint-inline { font-weight: 400; font-size: .88rem; color: var(--muted); }
+.choices { display: flex; flex-direction: column; gap: .5rem; margin-top: .4rem; }
+.choice { display: flex; align-items: center; gap: .6rem; min-height: 44px; font-weight: 400 !important; cursor: pointer; }
+.choice input { width: 20px; height: 20px; accent-color: var(--accent); margin: 0; }
+.hp { display: none !important; }
+.contact-form .btn { align-self: flex-start; }
+.contact-form .btn[disabled] { opacity: .6; cursor: progress; }
+.cf-status { margin: 0; min-height: 1.5em; font-weight: 600; }
+.cf-status.is-ok { color: var(--ink); }
+.cf-status.is-ok::before { content: "✓ "; color: var(--accent-text); }
+.cf-status.is-error { color: var(--accent-text); }
+html[data-contrast="high"] .field input, html[data-contrast="high"] .field textarea { border-width: 2px; }
