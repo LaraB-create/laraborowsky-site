@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-depth="tldr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility · Lara Borowsky</title>
+<meta name="description" content="How laraborowsky.com is built and tested for accessibility, what you can change, and what still needs work.">
+<meta name="theme-color" content="#F5F4F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1013" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Accessibility · Lara Borowsky">
+<meta property="og:description" content="How laraborowsky.com is built and tested for accessibility, what you can change, and what still needs work.">
+<meta property="og:url" content="https://www.laraborowsky.com/accessibility">
+<link rel="canonical" href="https://www.laraborowsky.com/accessibility">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<script>(function(){var s={};try{s=JSON.parse(localStorage.getItem('lb-settings')||'{}')||{}}catch(e){}var d=document.documentElement;var dark=s.theme==='dark'||((!s.theme||s.theme==='auto')&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);d.setAttribute('data-theme',dark?'dark':'light');var hc=s.contrast==='high'||((!s.contrast||s.contrast==='auto')&&window.matchMedia&&window.matchMedia('(prefers-contrast: more)').matches);d.setAttribute('data-contrast',hc?'high':'standard');if(s.weight)d.setAttribute('data-weight',s.weight);if(s.font)d.setAttribute('data-font',s.font);if(s.size)d.setAttribute('data-size',s.size);if(s.spacing)d.setAttribute('data-spacing',s.spacing);if(s.motion&&s.motion!=='auto')d.setAttribute('data-motion',s.motion);d.setAttribute('data-depth',s.depth||'tldr');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<a class="wordmark" href="/"><span class="b">Lara</span> <span class="t">Borowsky</span></a>
+<nav class="site-nav" aria-label="Main">
+<a href="/#method">Method</a>
+<a href="/#work">Work</a>
+<a href="/about">About</a>
+<a href="/lavalou">Lavalou</a>
+<button class="icon-btn theme-btn" type="button" data-action="toggle-theme" aria-label="Switch to dark mode"><svg class="moon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg><svg class="sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+<button class="settings-btn" type="button" data-action="toggle-settings" aria-expanded="false" aria-controls="reading-settings"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg> Reading settings</button>
+</nav>
+</div>
+</header>
+<section id="reading-settings" class="settings" aria-label="Reading settings" hidden>
+<div class="wrap">
+<p class="settings-intro">Make this site work the way your brain does. Changes apply right away, and stay in this browser only.</p>
+<div class="settings-grid">
+<fieldset class="setting"><legend>Theme</legend><div class="opts">
+<button class="pill" type="button" data-set="theme" data-val="auto" aria-pressed="false">Match my device</button>
+<button class="pill" type="button" data-set="theme" data-val="light" aria-pressed="false">Light</button>
+<button class="pill" type="button" data-set="theme" data-val="dark" aria-pressed="false">Dark</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Contrast</legend><div class="opts">
+<button class="pill" type="button" data-set="contrast" data-val="auto" aria-pressed="false">Match my device</button>
+<button class="pill" type="button" data-set="contrast" data-val="standard" aria-pressed="false">Standard</button>
+<button class="pill" type="button" data-set="contrast" data-val="high" aria-pressed="false">High</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Text weight</legend><div class="opts">
+<button class="pill" type="button" data-set="weight" data-val="standard" aria-pressed="false">Standard</button>
+<button class="pill" type="button" data-set="weight" data-val="bold" aria-pressed="false">Bolder</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Typeface</legend><div class="opts">
+<button class="pill" type="button" data-set="font" data-val="default" aria-pressed="false">Default</button>
+<button class="pill" type="button" data-set="font" data-val="dyslexic" aria-pressed="false">OpenDyslexic</button>
+<button class="pill" type="button" data-set="font" data-val="hyper" aria-pressed="false">Hyperlegible</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Text size</legend><div class="opts">
+<button class="pill" type="button" data-set="size" data-val="standard" aria-pressed="false">Standard</button>
+<button class="pill" type="button" data-set="size" data-val="large" aria-pressed="false">Large</button>
+<button class="pill" type="button" data-set="size" data-val="xlarge" aria-pressed="false">Extra large</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Spacing</legend><div class="opts">
+<button class="pill" type="button" data-set="spacing" data-val="standard" aria-pressed="false">Standard</button>
+<button class="pill" type="button" data-set="spacing" data-val="roomy" aria-pressed="false">Roomy</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Motion</legend><div class="opts">
+<button class="pill" type="button" data-set="motion" data-val="auto" aria-pressed="false">Match my device</button>
+<button class="pill" type="button" data-set="motion" data-val="on" aria-pressed="false">On</button>
+<button class="pill" type="button" data-set="motion" data-val="off" aria-pressed="false">Still</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Default depth</legend><div class="opts">
+<button class="pill" type="button" data-set="depth" data-val="tldr" aria-pressed="false">TL;DR</button>
+<button class="pill" type="button" data-set="depth" data-val="deep" aria-pressed="false">Rabbit Hole</button>
+</div></fieldset>
+</div>
+<button class="settings-reset" type="button" data-action="reset-settings">Reset to defaults</button>
+</div>
+</section>
+<main id="main">
+<section class="wrap about-hero" aria-labelledby="a11y-title">
+<div style="flex: 999 1 560px; min-width: 0">
+<p class="chapter">A note on the door, and who it’s for.</p>
+<h1 id="a11y-title" class="display"><span class="b">Accessible by default.</span> <span class="t">Not by accident.</span></h1>
+<p class="lede" style="max-width: 36em">I’m a disability advocate, and this site is meant to work for as many people as possible, however you read, see, hear, move, or think. Here’s what that means in practice, how I check it, and what still needs work.</p>
+</div>
+</section>
+<section class="wrap section" style="padding-top: 4rem" aria-labelledby="aI">
+<p class="eyebrow"><span class="chapter-tag">Chapter I · </span>The standard</p>
+<h2 id="aI" class="display h2"><span class="b">The floor,</span> <span class="t">not the ceiling.</span></h2>
+<p class="a11y-p">I aim for the Web Content Accessibility Guidelines (WCAG) 2.2 at Level AA as the minimum, and go further where I can.</p>
+</section>
+
+<section class="wrap section" style="padding-top: 4rem" aria-labelledby="aII">
+<p class="eyebrow"><span class="chapter-tag">Chapter II · </span>What you can change</p>
+<h2 id="aII" class="display h2"><span class="b">Make it yours.</span> <span class="t">Settings stay in your browser.</span></h2>
+<ul class="a11y-list"><li><strong>Theme:</strong> light, dark, or match your device.</li><li><strong>Contrast:</strong> standard or high, or match your device.</li><li><strong>Text weight:</strong> standard or bolder, for anyone who finds thin type hard to read.</li><li><strong>Typeface:</strong> the default, OpenDyslexic, or Atkinson Hyperlegible.</li><li><strong>Text size and spacing:</strong> three sizes, plus roomier line and letter spacing.</li><li><strong>Motion:</strong> animation follows your device, or you can stop it. The falling objects on the home page also have their own pause button.</li><li><strong>Depth:</strong> a short TL;DR version of everything, or the full Rabbit Hole.</li></ul>
+</section>
+
+<section class="wrap section" style="padding-top: 4rem" aria-labelledby="aIII">
+<p class="eyebrow"><span class="chapter-tag">Chapter III · </span>How it’s built</p>
+<h2 id="aIII" class="display h2"><span class="b">Under the hood.</span> <span class="t">The parts you don’t see.</span></h2>
+<ul class="a11y-list"><li><strong>Structure:</strong> real headings, landmarks, buttons and labels, so screen readers can move around the page.</li><li><strong>Keyboard:</strong> everything works without a mouse, with a visible focus outline and a skip link.</li><li><strong>Images:</strong> meaningful drawings have descriptions; decorative ones are hidden from screen readers.</li><li><strong>Color:</strong> nothing depends on color alone, and text meets contrast requirements in both themes.</li><li><strong>Zoom:</strong> pages reflow at 400% zoom without sideways scrolling.</li><li><strong>Your device settings:</strong> dark mode, reduced motion, higher contrast and Windows high-contrast mode are respected.</li><li><strong>Privacy:</strong> no tracking, and your reading settings never leave your browser.</li></ul>
+</section>
+
+<section class="wrap section" style="padding-top: 4rem" aria-labelledby="aIV">
+<p class="eyebrow"><span class="chapter-tag">Chapter IV · </span>How it’s checked</p>
+<h2 id="aIV" class="display h2"><span class="b">Receipts,</span> <span class="t">naturally.</span></h2>
+<ul class="a11y-list"><li><strong>Automated scans</strong> with axe on the home, About, accessibility and Lavalou pages, in light, dark and high-contrast modes and both depths.</li><li><strong>A manual pass</strong> by keyboard only, for heading and label structure, at 400% zoom, with extra text spacing, and in high-contrast mode.</li><li><strong>Last reviewed:</strong> November 15, 2026.</li></ul>
+</section>
+
+<section class="wrap section" style="padding-top: 4rem" aria-labelledby="aV">
+<p class="eyebrow"><span class="chapter-tag">Chapter V · </span>Still on the list</p>
+<h2 id="aV" class="display h2"><span class="b">Honest gaps.</span> <span class="t">I’m working on them.</span></h2>
+<ul class="a11y-list"><li><strong>The Cluck Quest games</strong> haven’t had a full accessibility review yet.</li><li><strong>Real-world testing:</strong> I haven’t yet tested with disabled people using their own assistive technology. That’s the gold standard, and it’s next.</li><li><strong>Web fonts</strong> load from Google Fonts. If they don’t load, the site falls back to standard fonts and stays fully usable.</li></ul>
+</section>
+
+<section class="wrap section" style="padding-top: 4rem; padding-bottom: 6rem" aria-labelledby="a6">
+<p class="eyebrow"><span class="chapter-tag">Chapter VI · </span>Found a problem?</p>
+<h2 id="a6" class="display h2"><span class="b">Tell me.</span> <span class="t">I’ll fix it.</span></h2>
+<p class="a11y-p">If something on this site doesn’t work for you, <a href="https://www.linkedin.com/in/lara-borowsky-52627a161/">send me a message on LinkedIn</a> with the page and what happened. I’d rather know.</p>
+</section>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<p class="the-end">The end. (Or is it?)</p>
+<p class="display bottom"><span class="b">You've reached the bottom of the rabbit hole.</span> <span class="t">Most people don't. Hi.</span></p>
+<div class="footer-links">
+<a href="https://www.linkedin.com/in/lara-borowsky-52627a161/">Say hi on LinkedIn <span aria-hidden="true">→</span></a>
+<a href="/">Back to the surface</a>
+<a href="/lavalou">Lavalou <span aria-hidden="true">→</span></a>
+<a href="/accessibility">Accessibility</a>
+</div>
+<div class="footer-legal">
+<span>© <span data-year>2026</span> Lara Borowsky · Read books. Be kind. Stay weird.</span>
+<span>Built with curiosity, Claude, and too many open tabs.</span>
+</div>
+</div>
+</footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

@@ -154,7 +154,7 @@ html[data-depth="deep"] .shallow { display: none; }
 .steps p { margin: 0; font-size: .95rem; color: var(--muted); }
 
 /* Card catalog */
-.catalog { margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.6rem; }
+.catalog { margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 1.6rem; }
 .card {
   position: relative; display: flex; flex-direction: column; gap: .7rem; padding: 1.6rem 1.7rem 2.6rem;
   border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 3px;
@@ -235,7 +235,7 @@ html[data-motion="off"] .card, html[data-motion="off"] .card:hover { transform: 
 .about-hero .depth { align-items: flex-start; flex: 1 1 300px; }
 .intro { border-top: 1px solid var(--ink); }
 .intro .wrap { padding-top: 3rem; padding-bottom: 4rem; }
-.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 2rem; }
 .facts .big { display: block; font-family: var(--f-display); font-size: 2.6rem; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
 .facts .small { display: block; margin-top: .4em; font-family: var(--f-display); font-size: 1.15rem; font-weight: 200; line-height: 1.3; }
 .long { display: flex; flex-wrap: wrap; gap: 2rem 4rem; }
@@ -255,10 +255,10 @@ html[data-motion="off"] .card, html[data-motion="off"] .card:hover { transform: 
 .path h3 { margin: 0; font-family: var(--f-display); font-size: 1.45rem; letter-spacing: -.02em; }
 .path p { margin: .35em 0 0; color: var(--muted); max-width: 46em; }
 .path .deep { margin: .5em 0 0; max-width: 46em; font-size: .92rem; font-weight: 300; font-style: italic; color: var(--muted); }
-.skills { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); border-top: 1px solid var(--ink); }
+.skills { list-style: none; margin: 3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); border-top: 1px solid var(--ink); }
 .skills li { display: flex; gap: 1rem; align-items: baseline; padding: 1.1rem 1rem 1.1rem 0; border-bottom: 1px solid var(--line); font-weight: 500; }
 .skills .num { font-family: var(--f-mono); font-size: .72rem; color: var(--accent-text); font-weight: 400; }
-.rules { margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+.rules { margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
 .rules div { padding: 1.6rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .rules h3 { margin: 0 0 .4em; font-family: var(--f-display); font-size: 1.4rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
 .rules p { margin: 0; font-size: .95rem; color: var(--muted); }
@@ -298,3 +298,65 @@ html[data-font="hyper"] .display, html[data-font="hyper"] .hero h1, html[data-fo
 .hero .lede { margin-top: 1.2rem; font-size: 1.05rem; color: var(--muted); }
 .apology { margin: .8rem 0 0; font-family: var(--f-mono); font-size: .72rem; letter-spacing: .08em; color: var(--muted); }
 html[data-font="dyslexic"] .opening, html[data-font="hyper"] .opening { font-size: 1.15rem; }
+
+
+/* ===== Accessibility pass (Nov 15, 2026) ===== */
+:root { --control: rgba(13,13,12,.55); }
+html[data-theme="dark"] { --control: rgba(241,238,231,.5); }
+.pill, .icon-btn { border-color: var(--control); }
+
+/* Selected options show a check mark, not just a fill */
+.pill[aria-pressed="true"]::before, .seg button[aria-pressed="true"]::before { content: "✓ "; font-weight: 700; }
+
+/* No hairline type below headline sizes */
+.facts .small { font-weight: 300; }
+.seg button { font-weight: 400; }
+.footer-links a { font-weight: 400; }
+.hook, .opening, .chapter, .the-end, .settings-intro, .margin-note p, .card .deep .note, .drink, .hole figcaption { font-weight: 400; }
+.path h3 .t, .offclock h3 .t, .lavalou-card h2 .t { font-weight: 300; }
+
+/* Pause button for the hero animation */
+.motion-btn { background: none; border: 0; padding: 0 .2em; min-height: 32px; font-family: var(--f-mono); font-style: normal; font-size: .75rem; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.motion-btn:hover { color: var(--ink); }
+.hole figcaption { align-items: center; }
+
+/* Bolder text */
+html[data-weight="bold"] body { font-weight: 500; }
+html[data-weight="bold"] .t, html[data-weight="bold"] .verbs h3 { font-weight: 500; }
+html[data-weight="bold"] .hook, html[data-weight="bold"] .opening, html[data-weight="bold"] .chapter,
+html[data-weight="bold"] .muted, html[data-weight="bold"] p, html[data-weight="bold"] dd, html[data-weight="bold"] li { font-weight: 500; }
+html[data-weight="bold"] .b, html[data-weight="bold"] h3, html[data-weight="bold"] strong { font-weight: 800; }
+html[data-weight="bold"] .seg button, html[data-weight="bold"] .pill { font-weight: 600; }
+
+/* High contrast */
+html[data-contrast="high"] {
+  --bg: #FFFFFF; --surface: #FFFFFF; --card: #FFFFFF; --rule: transparent;
+  --ink: #000000; --muted: #1F1F1F; --line: rgba(0,0,0,.7); --control: #000000;
+  --accent: #B3260A; --accent-text: #9A1F05; --on-accent: #FFFFFF;
+  --foot: #000000; --foot-ink: #FFFFFF; --foot-line: rgba(255,255,255,.7);
+}
+html[data-contrast="high"][data-theme="dark"] {
+  --bg: #000000; --surface: #000000; --card: #000000; --rule: transparent;
+  --ink: #FFFFFF; --muted: #F0F0F0; --line: rgba(255,255,255,.75); --control: #FFFFFF;
+  --accent: #FFC163; --accent-text: #FFC163; --on-accent: #000000;
+  --foot: #000000; --foot-ink: #FFFFFF; --foot-line: rgba(255,255,255,.75);
+}
+html[data-contrast="high"] .card { background-image: none; border-width: 2px; border-top-width: 4px; }
+html[data-contrast="high"] .tags li, html[data-contrast="high"] .pill, html[data-contrast="high"] .icon-btn, html[data-contrast="high"] .settings-btn, html[data-contrast="high"] .btn { border-width: 2px; }
+html[data-contrast="high"] a:not(.btn):not(.wordmark):not(.lavalou-btn):not(.skip) { text-decoration: underline; }
+html[data-contrast="high"] .t { font-weight: 400; }
+html[data-contrast="high"] .lavalou-card .ooze { opacity: .35; }
+html[data-contrast="high"] a:focus-visible, html[data-contrast="high"] button:focus-visible { outline-width: 3px; outline-color: var(--ink); }
+
+/* Windows high-contrast / forced colors */
+@media (forced-colors: active) {
+  .pill[aria-pressed="true"], .seg button[aria-pressed="true"] { outline: 2px solid CanvasText; outline-offset: 2px; text-decoration: underline; }
+  .card { border: 1px solid CanvasText; }
+  .ooze, .ears, .fall { forced-color-adjust: auto; }
+  .lavalou-card { border: 2px solid CanvasText; }
+}
+
+/* Accessibility page */
+.a11y-list { margin: 2rem 0 0; padding: 0; list-style: none; max-width: 46em; border-top: 1px solid var(--ink); }
+.a11y-list li { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.a11y-p { margin: 1.6rem 0 0; max-width: 40em; font-size: 1.1rem; }

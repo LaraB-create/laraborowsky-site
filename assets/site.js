@@ -2,7 +2,9 @@
 // Settings live in this browser only (localStorage). Nothing is sent anywhere.
 (function () {
   var KEY = 'lb-settings';
-  var DEFAULTS = { theme: 'auto', font: 'default', size: 'standard', spacing: 'standard', motion: 'auto', depth: 'tldr' };
+  var DEFAULTS = { theme: 'auto', contrast: 'auto', weight: 'standard', font: 'default', size: 'standard', spacing: 'standard', motion: 'auto', depth: 'tldr' };
+  var mContrast = window.matchMedia ? window.matchMedia('(prefers-contrast: more)') : null;
+  var mMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   var root = document.documentElement;
   var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
@@ -20,16 +22,25 @@
   function apply() {
     var dark = state.theme === 'dark' || (state.theme === 'auto' && media && media.matches);
     root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    var high = state.contrast === 'high' || (state.contrast === 'auto' && mContrast && mContrast.matches);
+    root.setAttribute('data-contrast', high ? 'high' : 'standard');
+    root.setAttribute('data-weight', state.weight);
     root.setAttribute('data-font', state.font);
     root.setAttribute('data-size', state.size);
     root.setAttribute('data-spacing', state.spacing);
     if (state.motion === 'auto') root.removeAttribute('data-motion'); else root.setAttribute('data-motion', state.motion);
     root.setAttribute('data-depth', state.depth);
 
-    var btns = document.querySelectorAll('[data-set]');
+    var btns = document.querySelectorAll('button[data-set]');
     for (var i = 0; i < btns.length; i++) {
       var b = btns[i];
       b.setAttribute('aria-pressed', String(state[b.getAttribute('data-set')] === b.getAttribute('data-val')));
+    }
+    var still = state.motion === 'off' || (state.motion === 'auto' && mMotion && mMotion.matches);
+    var mb = document.querySelectorAll('[data-action="toggle-motion"]');
+    for (var m = 0; m < mb.length; m++) {
+      mb[m].setAttribute('aria-pressed', String(still));
+      mb[m].textContent = still ? 'Play the falling' : 'Pause the falling';
     }
     var tb = document.querySelectorAll('.theme-btn');
     for (var j = 0; j < tb.length; j++) {
@@ -57,9 +68,18 @@
       if (open) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
       t.setAttribute('aria-expanded', String(open));
       if (open) { var first = panel.querySelector('button'); if (first) first.focus(); }
+    } else if (action === 'toggle-motion') {
+      var isStill = t.getAttribute('aria-pressed') === 'true';
+      set('motion', isStill ? 'on' : 'off');
     } else if (action === 'reset-settings') {
       state = Object.assign({}, DEFAULTS); save(state); apply();
     }
+  });
+
+  [mContrast, mMotion].forEach(function (mq) {
+    if (!mq) return;
+    var f = function () { apply(); };
+    if (mq.addEventListener) mq.addEventListener('change', f); else if (mq.addListener) mq.addListener(f);
   });
 
   if (media) {

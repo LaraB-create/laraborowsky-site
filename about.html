@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://www.laraborowsky.com/about">
 <link rel="canonical" href="https://www.laraborowsky.com/about">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<script>(function(){var s={};try{s=JSON.parse(localStorage.getItem('lb-settings')||'{}')||{}}catch(e){}var d=document.documentElement;var dark=s.theme==='dark'||((!s.theme||s.theme==='auto')&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);d.setAttribute('data-theme',dark?'dark':'light');if(s.font)d.setAttribute('data-font',s.font);if(s.size)d.setAttribute('data-size',s.size);if(s.spacing)d.setAttribute('data-spacing',s.spacing);if(s.motion&&s.motion!=='auto')d.setAttribute('data-motion',s.motion);d.setAttribute('data-depth',s.depth||'tldr');})();</script>
+<script>(function(){var s={};try{s=JSON.parse(localStorage.getItem('lb-settings')||'{}')||{}}catch(e){}var d=document.documentElement;var dark=s.theme==='dark'||((!s.theme||s.theme==='auto')&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);d.setAttribute('data-theme',dark?'dark':'light');var hc=s.contrast==='high'||((!s.contrast||s.contrast==='auto')&&window.matchMedia&&window.matchMedia('(prefers-contrast: more)').matches);d.setAttribute('data-contrast',hc?'high':'standard');if(s.weight)d.setAttribute('data-weight',s.weight);if(s.font)d.setAttribute('data-font',s.font);if(s.size)d.setAttribute('data-size',s.size);if(s.spacing)d.setAttribute('data-spacing',s.spacing);if(s.motion&&s.motion!=='auto')d.setAttribute('data-motion',s.motion);d.setAttribute('data-depth',s.depth||'tldr');})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="wrap">
-<a class="wordmark" href="/"><span class="b">Lara</span><span class="t">Borowsky</span></a>
+<a class="wordmark" href="/"><span class="b">Lara</span> <span class="t">Borowsky</span></a>
 <nav class="site-nav" aria-label="Main">
 <a href="/#method">Method</a>
 <a href="/#work">Work</a>
@@ -42,6 +42,15 @@
 <button class="pill" type="button" data-set="theme" data-val="auto" aria-pressed="false">Match my device</button>
 <button class="pill" type="button" data-set="theme" data-val="light" aria-pressed="false">Light</button>
 <button class="pill" type="button" data-set="theme" data-val="dark" aria-pressed="false">Dark</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Contrast</legend><div class="opts">
+<button class="pill" type="button" data-set="contrast" data-val="auto" aria-pressed="false">Match my device</button>
+<button class="pill" type="button" data-set="contrast" data-val="standard" aria-pressed="false">Standard</button>
+<button class="pill" type="button" data-set="contrast" data-val="high" aria-pressed="false">High</button>
+</div></fieldset>
+<fieldset class="setting"><legend>Text weight</legend><div class="opts">
+<button class="pill" type="button" data-set="weight" data-val="standard" aria-pressed="false">Standard</button>
+<button class="pill" type="button" data-set="weight" data-val="bold" aria-pressed="false">Bolder</button>
 </div></fieldset>
 <fieldset class="setting"><legend>Typeface</legend><div class="opts">
 <button class="pill" type="button" data-set="font" data-val="default" aria-pressed="false">Default</button>
@@ -74,7 +83,7 @@
 <section class="wrap about-hero" aria-labelledby="about-title">
 <div style="flex: 999 1 560px; min-width: 0">
 <p class="chapter">“Who are you?” said the Caterpillar.</p>
-<h1 id="about-title" class="display"><span class="b">I follow questions further</span><span class="t">than is strictly reasonable.</span></h1>
+<h1 id="about-title" class="display"><span class="b">I follow questions further</span> <span class="t">than is strictly reasonable.</span></h1>
 </div>
 <div class="depth">
 <div class="seg" role="group" aria-label="How much detail">
@@ -174,9 +183,10 @@
 <p class="the-end">The end. (Or is it?)</p>
 <p class="display bottom"><span class="b">You've reached the bottom of the rabbit hole.</span> <span class="t">Most people don't. Hi.</span></p>
 <div class="footer-links">
-<a href="https://www.linkedin.com/in/lara-borowsky-52627a161/">Say hi on LinkedIn →</a>
+<a href="https://www.linkedin.com/in/lara-borowsky-52627a161/">Say hi on LinkedIn <span aria-hidden="true">→</span></a>
 <a href="/">Back to the surface</a>
-<a href="/lavalou">Lavalou →</a>
+<a href="/lavalou">Lavalou <span aria-hidden="true">→</span></a>
+<a href="/accessibility">Accessibility</a>
 </div>
 <div class="footer-legal">
 <span>© <span data-year>2026</span> Lara Borowsky · Read books. Be kind. Stay weird.</span>
