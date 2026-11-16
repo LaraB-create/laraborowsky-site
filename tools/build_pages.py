@@ -276,7 +276,7 @@ def index():
 <div class="main">
 <p class="chapter">Chapter IV · “Who are you?” said the Caterpillar</p>
 <h2 id="about-title" class="display" style="font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.02; margin-bottom: .8em"><span class="b">I follow questions further</span> <span class="t">than is strictly reasonable.</span></h2>
-<p style="margin: 0 0 1.4em; max-width: 36em">Ten-plus years in public-sector consulting, from operations to marketing director, and three-plus years building with AI. I design workflows where the AI does the heavy lifting and a person makes the call.</p>
+<p style="margin: 0 0 1.4em; max-width: 36em">With one public-sector consulting firm since 2012, on and off, from project-based help to marketing director, and three-plus years building with AI. I design workflows where the AI does the heavy lifting and a person makes the call.</p>
 <a class="btn" href="/about">The long version →</a>
 </div>
 <dl class="notes" aria-label="Field notes">
@@ -302,14 +302,16 @@ def index():
 """
     return head('Lara Borowsky: curiosity, with receipts', 'Lara Borowsky: marketing and BD strategist, AI systems builder, and maker of games starring chickens. Rabbit hole research, with receipts.', '/') + header(None) + body + footer('<a href="/about">About me</a>')
 
-FACTS = [('10+ years', 'in public-sector infrastructure consulting, from operations to marketing director.'),
+FACTS = [('Since 2012', 'with one public-sector consulting firm, in stretches, from project-based help to marketing director.'),
          ('3+ years', 'building with AI, with a human making every final call.'),
          ('1 person', 'marketing department. Hence the systems.')]
 PATH = [('2025 to now', 'Marketing Director', 'at a public-sector consulting firm', 'Brand, website, content, and the systems that keep a one-person marketing department running.', 'This is where building with AI went from experiment to everyday practice, always with a person making the final call.'),
         ('2023 to 2025', 'Marketing Manager', 'same firm', 'Moved marketing in-house and designed just about everything with a logo on it.', 'Also planned an in-person retreat for a fully remote team, travel logistics included.'),
         ('2022 to 2023', 'Associate Consultant', 'same firm', 'Research and pursuit analysis to support strategic planning.', 'This is where the rabbit holes started: agency research, teaming partners, procurement trends.'),
-        ('2016 to 2019', 'Business Manager', 'same firm', 'Operations, systems, and keeping the trains running.', 'Learning how a firm actually runs turned out to be the best marketing training I could have had.'),
-        ('Before that', 'Operations and client services', 'plus independent consulting', 'E-commerce client services and operations, then consulting on my own.', None)]
+        ('2018 to 2019', 'Business Manager', 'same firm', 'Operations, systems, and keeping the trains running.', 'Learning how a firm actually runs turned out to be the best marketing training I could have had.'),
+        ('2012 to 2015', 'Independent consultant', 'same firm, project by project', 'Built the firm’s first website, pulled together its business certification applications, and was the IT help before there was IT help.', 'On and off, as projects came up. It’s how I met the firm, and how I learned that I like building the thing more than just using it.'),
+        ('2009 to 2011', 'Client services', 'at a call center', 'One of the voices behind 50+ client contracts: pet doors, solar panels, college directory assistance, high-end butcher orders, IT help desks, restaurant delivery confirmations, and more.', 'Became contract lead for one of them: a wine company’s first direct-to-consumer online sales launch, with me as the go-between for customers and the warehouse.'),
+        ('Since I was 15', 'A little bit of everything,', 'all of it useful', 'Swim club office, lifeguard, swim teacher, camp counselor, photographer’s assistant, retail, café, and catering.', 'At 15 I helped a swim club move its membership sign-ups from paper to digital. I taught swim lessons to kids, parent-and-baby classes, and a student with a disability, and lifeguarded at two pools. I assisted a school photographer, worked retail at a cooking supply store and a hat shop (where I also kept up her web store), opened a café on my own to make breakfast for the morning ferry commuters in Hoboken (and started on the baking), and served weddings and events for 150+ guests at a catering hall before moving to front of house. Customer service, it turns out, is systems thinking with a smile.')]
 SKILLS = ['Public-sector infrastructure marketing', 'AI-assisted content systems and workflow design', 'Responsible AI use and governance',
           'Brand strategy, visual and verbal design systems', 'Proposal, capability and BD content', 'Marketing strategy and digital engagement',
           'Capture and pursuit operations', 'Enterprise systems and process improvement', 'Process standardization and knowledge management']
