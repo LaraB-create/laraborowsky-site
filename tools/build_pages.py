@@ -47,7 +47,7 @@ def header(current):
 <a class="wordmark" href="/"><span class="b">Lara</span><span class="t">Borowsky</span></a>
 <nav class="site-nav" aria-label="Main">
 {nav('/#method','Method','method')}
-{nav('/#work','Work','work')}
+{nav('/#work','Projects','work')}
 {nav('/about','About','about')}
 {nav('/lavalou','Lavalou','lavalou')}
 {nav('/contact','Contact','contact')}
@@ -91,6 +91,7 @@ def footer(second_link):
 {second_link}
 <a href="/lavalou">Lavalou →</a>
 <a href="/accessibility">Accessibility</a>
+<a class="footer-door" href="/contact?topic=key"><span class="fd-art" aria-hidden="true"><svg viewBox="0 0 40 52"><path d="M4 50 V20 A16 16 0 0 1 36 20 V50 Z" style="fill:var(--accent)"/></svg><svg class="fd-leaf" viewBox="0 0 40 52"><path d="M4 50 V20 A16 16 0 0 1 36 20 V50 Z" style="fill:var(--foot)" stroke="currentColor" stroke-width="1.5"/><path d="M9 46 V21 A11 11 0 0 1 31 21 V46" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5"/><circle cx="29" cy="34" r="1.8" fill="currentColor"/></svg></span><span>A little door</span></a>
 </div>
 <div class="footer-legal">
 <span>© <span data-year>2026</span> Lara Borowsky · Read books. Be kind. Stay weird.</span>
@@ -156,14 +157,6 @@ CARDS = [
   ('741.6 LAV', 'Brand &amp; Design', 'Lavalou Brand Kit', 'Built because my side projects deserved a real brand.', 'A full identity for my creative label: logo, palette, favicons, social images, and a short guide.', 'Vector masters, web and print versions, and color tokens that the Lavalou pages actually use.', 'A little molten. A little strange. The drips are non-negotiable.', ['Brand systems', 'Design'], ('/lavalou', 'See it in use')),
   ('006.7 LAR', 'You are here', 'This website', 'Built because a portfolio should let you choose your own depth.', 'Light and dark modes, three typefaces including OpenDyslexic, adjustable spacing, and a TL;DR or Rabbit Hole version of everything.', 'Plain HTML and CSS, no tracking, and settings that stay in your own browser.', 'Yes, the rabbit is wiggling its ears on purpose.', ['HTML', 'CSS', 'Accessibility'], None),
 ]
-
-WARREN = """<article class="card warren">
-<div class="card-meta"><span>By request</span><span class="accent">Behind the little door</span></div>
-<h3>Professional work</h3>
-<p class="hook">There’s a little door. Ask me for the golden key.</p>
-<p class="summary">Case studies and working demos from my marketing and business development work, rebuilt with made-up data and shared privately with people who ask.</p>
-<a class="btn btn-ink" href="https://www.linkedin.com/in/lara-borowsky-52627a161/" style="align-self: flex-start; margin-top: .6rem">Request access →</a>
-</article>"""
 
 def card(c):
     call, area, title, hook, tldr, how, note, tags, link = c
@@ -245,7 +238,7 @@ def index():
 <p class="chapter">Chapter II · The card catalog</p>
 <div class="section-head">
 <h2 id="work-title" class="display h2"><span class="b stack">Things I built for fun,</span><span class="t stack">filed properly.</span></h2>
-<p>Each one gets a real Dewey call number, because I’m the kind of person who would. The professional work is in the next chapter, behind a little door.</p>
+<p>Each one gets a real Dewey call number, because I’m the kind of person who would.</p>
 </div>
 <div class="catalog">
 {cards}
@@ -254,27 +247,10 @@ def index():
 
 
 
-<section id="door" class="wrap section" aria-labelledby="door-title">
-<p class="chapter">Chapter III · Behind the little door</p>
-<div class="door-wrap">
-<div class="door-art" aria-hidden="true">
-<svg class="door-frame" viewBox="0 0 200 260"><path d="M30 250 V110 A70 70 0 0 1 170 110 V250 Z" style="fill:var(--door-dark)"/><path d="M30 250 V110 A70 70 0 0 1 170 110 V250" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 250 H186" stroke="currentColor" stroke-width="1"/><g style="fill:var(--accent)" opacity=".55"><circle cx="100" cy="150" r="1.6"/><circle cx="88" cy="190" r="1.2"/><circle cx="116" cy="210" r="1.4"/></g></svg>
-<svg class="door-leaf" viewBox="0 0 200 260"><path d="M30 250 V110 A70 70 0 0 1 170 110 V250 Z" style="fill:var(--surface)" stroke="currentColor" stroke-width="1.5"/><path d="M48 238 V116 A52 52 0 0 1 152 116 V238 Z" fill="none" stroke="currentColor" stroke-width="1" opacity=".6"/><path d="M100 64 V238 M48 170 H152" stroke="currentColor" stroke-width="1" opacity=".35"/><circle cx="140" cy="176" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M140 190 a3 3 0 1 1 0.01 0 M138.6 192 L137.4 199 H142.6 L141.4 192" style="fill:var(--ink)"/></svg>
-<svg class="door-key" viewBox="0 0 120 50"><g fill="none" style="stroke:var(--accent)" stroke-width="2" stroke-linecap="round"><circle cx="16" cy="25" r="11"/><circle cx="16" cy="25" r="4.5"/><path d="M27 25 H104 M88 25 V35 M96 25 V33 M104 25 V36"/></g><path d="M8 4 C20 10 22 12 24 15" fill="none" stroke="currentColor" stroke-width=".8" opacity=".6"/></svg>
-</div>
-<div class="door-copy">
-<h2 id="door-title" class="display h2"><span class="b stack">Professional work,</span><span class="t stack">behind the little door.</span></h2>
-<p>Case studies and working demos from my marketing and business development work, reimagined and rebuilt with made-up data.</p>
-<a class="btn btn-primary" href="/contact?topic=key">Request a key</a>
-<p class="door-note">Ask, and I’ll send you the way in.</p>
-</div>
-</div>
-</section>
-
 <section id="about" class="wrap section" aria-labelledby="about-title">
 <div class="split">
 <div class="main">
-<p class="chapter">Chapter IV · “Who are you?” said the Caterpillar</p>
+<p class="chapter">Chapter III · “Who are you?” said the Caterpillar</p>
 <h2 id="about-title" class="display" style="font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.02; margin-bottom: .8em"><span class="b">I follow questions further</span> <span class="t">than is strictly reasonable.</span></h2>
 <p style="margin: 0 0 1.4em; max-width: 36em">With one public-sector consulting firm since 2012, on and off, from project-based help to marketing director, and three-plus years building with AI. I design workflows where the AI does the heavy lifting and a person makes the call.</p>
 <a class="btn" href="/about">The long version →</a>
@@ -501,7 +477,7 @@ def contact():
 <fieldset class="field">
 <legend>What brings you here?</legend>
 <div class="choices">
-<label class="choice"><input type="radio" name="topic" value="Request a key" checked> Request a key to the professional work</label>
+<label class="choice"><input type="radio" name="topic" value="Request a key" checked> Request a key to the little door</label>
 <label class="choice"><input type="radio" name="topic" value="Just saying hello"> Just saying hello</label>
 <label class="choice"><input type="radio" name="topic" value="Something else"> Something else</label>
 </div>
@@ -522,7 +498,7 @@ def contact():
 </main>
 <script src="/assets/contact.js"></script>
 """
-    return head('Contact · Lara Borowsky', 'Say hello to Lara Borowsky, or request a key to her professional work.', '/contact') + header('contact') + body + footer('<a href="/">Back to the surface</a>')
+    return head('Contact · Lara Borowsky', 'Say hello to Lara Borowsky, or ask for a key to the little door.', '/contact') + header('contact') + body + footer('<a href="/">Back to the surface</a>')
 
 open(os.path.join(OUT, 'index.html'), 'w').write(index())
 open(os.path.join(OUT, 'about.html'), 'w').write(about())
