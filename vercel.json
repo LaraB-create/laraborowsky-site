@@ -4,14 +4,29 @@
   "redirects": [
     {
       "source": "/",
-      "has": [{ "type": "host", "value": "(www\\.)?lavalou\\.fun" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?lavalou\\.fun"
+        }
+      ],
       "destination": "https://www.laraborowsky.com/lavalou",
       "permanent": false
     },
     {
       "source": "/:path+",
-      "has": [{ "type": "host", "value": "(www\\.)?lavalou\\.fun" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?lavalou\\.fun"
+        }
+      ],
       "destination": "https://www.laraborowsky.com/lavalou/:path+",
+      "permanent": false
+    },
+    {
+      "source": "/about",
+      "destination": "/",
       "permanent": false
     }
   ]
