@@ -246,6 +246,19 @@ def index():
 
 
 
+<section id="about" class="wrap section" aria-labelledby="about-title">
+<div class="split">
+<div class="main">
+<p class="chapter">Chapter III · “Who are you?” said the Caterpillar</p>
+<h2 id="about-title" class="display" style="font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.02; margin-bottom: .8em"><span class="b">I follow questions further</span> <span class="t">than is strictly reasonable.</span></h2>
+<p style="margin: 0 0 1.4em; max-width: 36em">With one public-sector consulting firm since 2012, on and off, from project-based help to marketing director, and three-plus years building with AI. I design workflows where the AI does the heavy lifting and a person makes the call.</p>
+</div>
+<dl class="notes" aria-label="Field notes">
+{notes}
+</dl>
+</div>
+</section>
+
 <section class="wrap" style="padding-top: 4rem; padding-bottom: 6rem" aria-labelledby="otc-title">
 <div class="lavalou-card">
 <span class="ooze one" aria-hidden="true"></span>
