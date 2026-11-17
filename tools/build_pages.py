@@ -66,7 +66,7 @@ def settings():
         ('Text size', 'size', [('standard', 'Standard'), ('large', 'Large'), ('xlarge', 'Extra large')]),
         ('Spacing', 'spacing', [('standard', 'Standard'), ('roomy', 'Roomy')]),
         ('Motion', 'motion', [('auto', 'Match my device'), ('on', 'On'), ('off', 'Still')]),
-        ('Default depth', 'depth', [('tldr', 'TL;DR'), ('deep', 'Rabbit Hole')]),
+        ('Default depth', 'depth', [('tldr', 'Surface level'), ('deep', 'Deep dive')]),
     ]
     out = ['<section id="reading-settings" class="settings" aria-label="Reading settings" hidden>', '<div class="wrap">',
            '<p class="settings-intro">Make this site work the way your brain does. Changes apply right away, and stay in this browser only.</p>',
@@ -107,15 +107,14 @@ ORNAMENT = '<div class="ornament" aria-hidden="true"><svg width="120" height="16
 
 DEPTH_SWITCH = """<div class="depth">
 <div class="seg" role="group" aria-label="How much detail">
-<button type="button" data-set="depth" data-val="tldr" aria-pressed="true">TL;DR</button>
-<button type="button" data-set="depth" data-val="deep" aria-pressed="false">Rabbit Hole</button>
+<button type="button" data-set="depth" data-val="tldr" aria-pressed="true">Surface level</button>
+<button type="button" data-set="depth" data-val="deep" aria-pressed="false">Deep dive</button>
 </div>
-<div class="drink" aria-hidden="true"><span>drink me</span><span>eat me</span></div>
 </div>"""
 
 HOLE = """<figure class="hole">
 <div class="hole-art">
-<svg class="hole-rings" role="img" aria-label="Line drawing looking down a rabbit hole, marked with depths: surface, TL;DR, rabbit hole, footnotes. A rabbit's ears peek over the rim and small objects fall inside." viewBox="0 0 440 440">
+<svg class="hole-rings" role="img" aria-label="Line drawing looking down a rabbit hole, marked with depths: surface, deep dive, rabbit hole, footnotes. A rabbit's ears peek over the rim and small objects fall inside." viewBox="0 0 440 440">
 <g fill="none" stroke="currentColor" stroke-width="1">
 <ellipse cx="220" cy="96" rx="196" ry="42" opacity=".9"/><ellipse cx="220" cy="160" rx="166" ry="35" opacity=".7"/><ellipse cx="220" cy="219" rx="138" ry="29" opacity=".55"/><ellipse cx="220" cy="272" rx="111" ry="23" opacity=".42"/><ellipse cx="220" cy="319" rx="85" ry="18" opacity=".32"/><ellipse cx="220" cy="360" rx="61" ry="13" opacity=".24"/><ellipse cx="220" cy="395" rx="39" ry="8" opacity=".18"/>
 <path d="M24 96 L181 395 M416 96 L259 395" opacity=".3"/>
@@ -123,7 +122,7 @@ HOLE = """<figure class="hole">
 <ellipse cx="220" cy="219" rx="138" ry="29" fill="none" stroke="var(--accent)" stroke-width="2"/>
 <g font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1.2" fill="var(--muted)">
 <text x="430" y="92" text-anchor="end">0 FT · SURFACE</text>
-<text x="398" y="223" text-anchor="end" fill="var(--accent-text)">TL;DR</text>
+<text x="432" y="223" text-anchor="end" fill="var(--accent-text)">DEEP DIVE</text>
 <text x="340" y="323" text-anchor="end">RABBIT HOLE</text>
 <text x="292" y="399" text-anchor="end">FOOTNOTES</text>
 </g>
@@ -143,7 +142,7 @@ HOLE = """<figure class="hole">
 <svg class="fall" aria-hidden="true" viewBox="0 0 40 40" style="left:36%;top:26%;width:7%;animation-delay:-4.5s"><rect x="10" y="5" width="20" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M20 15 C18 11 13 13 15 17 L20 22 L25 17 C27 13 22 11 20 15 Z" fill="var(--accent)"/></svg>
 <svg class="fall" aria-hidden="true" viewBox="0 0 40 40" style="left:50%;top:30%;width:6%;animation-delay:-7.5s"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 12 H28 V33 C28 35 26 36 24 36 H16 C14 36 12 35 12 33 Z"/><path d="M11 8 H29 V12 H11 Z"/><path d="M15 22 H25"/></g></svg>
 </div>
-<figcaption><span>Plate I. Curiouser and curiouser.</span><button class="motion-btn" type="button" data-action="toggle-motion" aria-pressed="false">Pause the falling</button></figcaption>
+<figcaption><span>Plate I. Falling, with notes.</span><button class="motion-btn" type="button" data-action="toggle-motion" aria-pressed="false">Pause the falling</button></figcaption>
 </figure>"""
 
 CARDS = [
@@ -154,7 +153,7 @@ CARDS = [
   ('813.6 IND', 'Personal · Book events', 'Indies Invade Philly', 'Built because a signing with dozens of indie authors is a lot of books to plan for.', 'A preorder portal for an indie author signing event: browse every author, move books from wishlist to final picks, track preorders, and plan the big day.', 'The 2026 version is a single-page web app that remembers your picks in your browser. The 2027 version is in the works: a real site with logins, so friends can keep their own lists.', 'This is what happens when a reader with a spreadsheet habit gets a ticket.', ['HTML', 'Research', 'Excel'], None),
   ('641.5 DIN', 'Personal · Family', 'Dinner Spinner', 'Built because “I don’t know, what do you want?” is not a dinner plan.', 'A kid-friendly wheel that picks where to eat, plus a second spinner for what to make at home.', 'Two wheels, one for going out and one for staying in, built so the kids can spin it themselves.', 'The wheel has the final say. That’s the whole point.', ['HTML', 'Family tools'], None),
   ('741.6 LAV', 'Brand &amp; Design', 'Lavalou Brand Kit', 'Built because my side projects deserved a real brand.', 'A full identity for my creative label: logo, palette, favicons, social images, and a short guide.', 'Vector masters, web and print versions, and color tokens that the Lavalou pages actually use.', 'A little molten. A little strange. The drips are non-negotiable.', ['Brand systems', 'Design'], ('/lavalou', 'See it in use')),
-  ('006.7 LAR', 'You are here', 'This website', 'Built because a portfolio should let you choose your own depth.', 'Light and dark modes, three typefaces including OpenDyslexic, adjustable spacing, and a TL;DR or Rabbit Hole version of everything.', 'Plain HTML and CSS, no tracking, and settings that stay in your own browser.', 'Yes, the rabbit is wiggling its ears on purpose.', ['HTML', 'CSS', 'Accessibility'], None),
+  ('006.7 LAR', 'You are here', 'This website', 'Built because a portfolio should let you choose your own depth.', 'Light and dark modes, three typefaces including OpenDyslexic, adjustable spacing, and a surface-level or deep-dive version of everything.', 'Plain HTML and CSS, no tracking, and settings that stay in your own browser.', 'Yes, the rabbit is wiggling its ears on purpose.', ['HTML', 'CSS', 'Accessibility'], None),
 ]
 
 def card(c):
@@ -178,7 +177,7 @@ def card(c):
 STEPS = [('01 · 0 ft', 'Fall in', 'Start with the question nobody has time for, and follow it past the point where it’s comfortable.'),
          ('02 · 40 ft', 'Keep receipts', 'Every finding gets a source. If I can’t trace it, it doesn’t go in.'),
          ('03 · 80 ft', 'Build the ladder', 'Turn what I found into a tool someone else can use without me in the room.'),
-         ('04 · Surface', 'Climb out', 'Lead with the TL;DR. Leave the burrow open for anyone who wants the footnotes.')]
+         ('04 · Surface', 'Climb out', 'Lead with the short version. Leave the burrow open for anyone who wants the footnotes.')]
 VERBS = [('01', 'Find', 'Lead Management', 'Surface the opportunities worth a second look.'),
          ('02', 'Screen', 'Go/No-Go Portal', 'Decide which ones to chase, and say why.'),
          ('03', 'Position', 'Positioning Discovery', 'Know what you want to be known for before the RFP drops.'),
@@ -197,15 +196,14 @@ def index():
 <div class="wrap hero">
 <div class="hero-copy">
 <p class="chapter opening-chapter">Chapter the First, <span class="t">in which a marketer follows a question somewhere it probably shouldn’t go</span></p>
-<h1 class="display"><span class="b">Six improbable things</span><span class="t">before <span class="accent">breakfast.</span></span></h1>
-<p class="opening">Lara was beginning to get very tired of doing the same task twice, and of hunting for answers in folders with no pictures or conversations in them. So when a curious question hopped past, she followed it down the rabbit hole, and climbed back out with a tool instead of a headache.</p>
-<p class="lede">I’m a marketing and business development strategist who builds human-in-the-loop AI tools, research systems, and the occasional wildly over-engineered spreadsheet. Curiosity, with receipts. This is where I keep them.</p>
-<p class="apology">With apologies to Lewis Carroll.</p>
+<h1 class="display"><span class="b">Down the rabbit hole,</span><span class="t"><span class="accent">on purpose.</span></span></h1>
+<p class="opening">At fifteen I had a summer job in a swim club office. By August, I helped move them from paper to a computer, and I’ve been doing some version of that ever since: spotting the thing that’s done the slow way, following it down to find out why, and coming back up with a better way to do it. Sometimes that’s a spreadsheet. Sometimes it’s a website. Once, it was a math game starring a chicken. This is where I keep them.</p>
+<p class="lede">I’m a marketing and business development strategist who builds human-in-the-loop AI tools, research systems, and the occasional wildly over-engineered spreadsheet. Curiosity, with receipts.</p>
 <div class="hero-ctas">
 <a class="btn btn-primary" href="#work" data-set="depth" data-val="tldr">Start at the surface</a>
 <a class="btn" href="#method" data-set="depth" data-val="deep">Take me down the rabbit hole <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 4v14M6 12l6 6 6-6"/></svg></a>
 </div>
-<p class="stats"><span><b>8</b> things I built for fun (two were after lunch)</span><span><b>2</b> games starring chickens</span><span><b>3</b> typefaces to choose from</span><span><b>∞</b> open tabs</span></p>
+<p class="stats"><span><b>8</b> things I built for fun</span><span><b>2</b> games starring chickens</span><span><b>3</b> typefaces to choose from</span><span><b>∞</b> open tabs</span></p>
 </div>
 {HOLE}
 </div>
@@ -214,7 +212,7 @@ def index():
 <div class="wrap">
 <div style="flex: 1 1 480px">
 <h2 id="depth-title" class="display"><span class="b">How deep</span> <span class="t">do you want to go?</span></h2>
-<p>Everything here comes in two sizes. TL;DR gives you the point in about a minute. Rabbit Hole shows the reasoning, the dead ends, and the footnotes. Switch any time.</p>
+<p>Everything here comes in two sizes. Surface level gives you the point in about a minute. Deep dive shows the reasoning, the dead ends, and the footnotes. Switch any time.</p>
 </div>
 {DEPTH_SWITCH}
 </div>
@@ -249,7 +247,7 @@ def index():
 <section id="about" class="wrap section" aria-labelledby="about-title">
 <div class="split">
 <div class="main">
-<p class="chapter">Chapter III · “Who are you?” said the Caterpillar</p>
+<p class="chapter">Chapter III · Field notes</p>
 <h2 id="about-title" class="display" style="font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.02; margin-bottom: .8em"><span class="b">I follow questions further</span> <span class="t">than is strictly reasonable.</span></h2>
 <p style="margin: 0 0 1.4em; max-width: 36em">With one public-sector consulting firm since 2012, on and off, from project-based help to marketing director, and three-plus years building with AI. I design workflows where the AI does the heavy lifting and a person makes the call.</p>
 </div>
@@ -312,13 +310,13 @@ def about():
     body = f"""<main id="main">
 <section class="wrap about-hero" aria-labelledby="about-title">
 <div style="flex: 999 1 560px; min-width: 0">
-<p class="chapter">“Who are you?” said the Caterpillar.</p>
+<p class="chapter">The long version.</p>
 <h1 id="about-title" class="display"><span class="b">I follow questions further</span><span class="t">than is strictly reasonable.</span></h1>
 </div>
 <div class="depth">
 <div class="seg" role="group" aria-label="How much detail">
-<button type="button" data-set="depth" data-val="tldr" aria-pressed="true">TL;DR</button>
-<button type="button" data-set="depth" data-val="deep" aria-pressed="false">Rabbit Hole</button>
+<button type="button" data-set="depth" data-val="tldr" aria-pressed="true">Surface level</button>
+<button type="button" data-set="depth" data-val="deep" aria-pressed="false">Deep dive</button>
 </div>
 <p class="muted" style="margin: 0; font-size: .9rem">Short version or the whole story. Your call.</p>
 </div>
@@ -415,7 +413,7 @@ def access():
   ('Typeface:', 'the default, OpenDyslexic, or Atkinson Hyperlegible.'),
   ('Text size and spacing:', 'three sizes, plus roomier line and letter spacing.'),
   ('Motion:', 'animation follows your device, or you can stop it. The falling objects on the home page also have their own pause button.'),
-  ('Depth:', 'a short TL;DR version of everything, or the full Rabbit Hole.'),
+  ('Depth:', 'a short surface-level version of everything, or the full deep dive.'),
 ]))}
 {sec('III', 'How it’s built', 'Under the hood.', 'The parts you don’t see.', ul([
   ('Structure:', 'real headings, landmarks, buttons and labels, so screen readers can move around the page.'),
