@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Lara's Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#0d1b1e;--panel:#14282c;--line:#2a4a4f;--cream:#f1ece0;--muted:#9db5b3;--wood:#5a3a20;--brass:#d9a441;--rose:#e58aa6;--mint:#7fd3bd;--sky:#8fb4ff;--acc:#d9a441}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--cream);font-family:'DM Sans',system-ui,sans-serif}
+.app{padding:28px 40px 80px}
+.wrap{max-width:1280px;margin:0 auto}
+.serif{font-family:'Playfair Display',Georgia,serif}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px;justify-content:space-between;margin-bottom:28px}
+.brand{font-family:'Playfair Display',Georgia,serif;font-size:30px;font-weight:800;margin:0}
+.brand em{font-weight:500;color:var(--brass)}
+.nav{display:flex;flex-wrap:wrap;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px}
+.navbtn{border:0;background:transparent;color:var(--muted);font-size:14px;font-weight:700;padding:10px 20px;border-radius:999px;min-height:44px}
+.navbtn:hover{color:var(--cream)}
+.navbtn.on{background:var(--acc);color:#10201f}
+.addbtn{border:0;background:var(--brass);color:#1b1407;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;min-height:44px}
+.toolbtn{border:0;background:none;color:var(--muted);font-size:13px;text-decoration:underline;padding:10px 6px;min-height:44px}
+.band{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 22px;border-radius:10px 10px 0 0;color:#10201f;background:var(--acc)}
+.band h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-size:28px;font-weight:800}
+.band p{margin:0;font-size:14px;font-weight:500}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:20px 0}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.tile b{display:block;font-family:'Playfair Display',Georgia,serif;font-size:38px;line-height:1;font-weight:800}
+.tile span{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+.tile button{margin-top:8px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;margin:0 0 16px}
+.ctl .grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.ctl .lab{font-size:12px;color:var(--muted);margin-right:2px}
+.chip{border:1px solid var(--line);background:transparent;color:#cfdad8;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;min-height:40px}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#10201f;font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin:0 0 14px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+.cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px}
+.case{background:#0a1517;border:10px solid var(--wood);border-radius:6px;box-shadow:inset 0 0 0 2px #3a2412}
+.case h3{margin:0;padding:8px 14px;background:var(--wood);color:var(--cream);font-size:13px;font-weight:700}
+.shelf{display:flex;align-items:flex-end;gap:3px;height:200px;padding:0 14px;border-bottom:12px solid var(--wood)}
+.spine{border:0;border-radius:3px 3px 0 0;padding:0;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:inset 0 8px 0 rgba(255,255,255,.28),inset 0 -8px 0 rgba(0,0,0,.12)}
+.spine:hover,.spine:focus-visible{transform:translateY(-6px)}
+.spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:700;color:#10201f;max-height:88%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.spine.faded{opacity:.42}
+.hint{margin:14px 0 0;font-size:13px;color:var(--muted)}
+.empty{padding:40px 20px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:10px}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;margin:0 6px 6px 0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-bottom:18px}
+.panel h3{margin:0 0 14px;font-size:18px;font-family:'Playfair Display',Georgia,serif}
+.rec{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.rec:first-of-type{border-top:0}
+.rec .meta{font-size:13px;color:var(--muted)}
+.rec .pts{margin-left:auto;color:#e8b94f;font-weight:700;font-size:13px}
+.linkbtn{border:0;background:none;color:var(--cream);font-size:15px;font-weight:700;padding:0;text-align:left;text-decoration:underline;text-decoration-color:#4b7a80;text-underline-offset:4px}
+.linkbtn:hover{text-decoration-color:var(--cream)}
+.q{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:10px}
+.qcover{width:64px;height:92px;border-radius:3px 7px 7px 3px;display:flex;align-items:flex-end;padding:6px;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:11px;color:#10201f;background-size:cover;background-position:center;overflow:hidden}
+.look{font-size:12.5px;color:var(--muted);margin-top:4px}
+.vote{border:1px solid var(--mint);background:transparent;color:var(--mint);font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px;min-height:44px;white-space:nowrap}
+.vote b{color:var(--cream);margin-left:6px}
+.spin{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center}
+.slot{flex:1;min-width:240px;background:#0a1517;border:3px solid var(--mint);border-radius:10px;padding:16px 20px;font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;min-height:34px}
+.srow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin-bottom:12px}
+.dots{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px}
+.dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#10201f;border:2px solid transparent;background:none;padding:0}
+.mask{position:fixed;inset:0;background:rgba(5,12,13,.78);display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow:auto;z-index:50}
+.dlg{width:100%;max-width:740px;background:var(--panel);border:1px solid #3b6268;border-radius:14px;padding:28px 30px}
+.dlg h2{margin:0 0 6px;font-family:'Playfair Display',Georgia,serif}
+.field{display:block;margin-bottom:14px}
+.field label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:5px}
+.inp{width:100%;background:var(--ground);border:1px solid var(--line);border-radius:8px;color:var(--cream);font-family:inherit;font-size:15px;padding:11px 13px;min-height:44px}
+textarea.inp{min-height:84px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.ghost{border:1px solid #3b6268;background:transparent;color:var(--cream);font-size:14px;font-weight:700;padding:11px 20px;border-radius:999px;min-height:44px}
+.main{border:0;background:var(--brass);color:#1b1407;font-size:14px;font-weight:700;padding:11px 22px;border-radius:999px;min-height:44px}
+.danger{border-color:#a8503e;color:#f0a898}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.intent{display:block;width:100%;text-align:left;background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;color:var(--cream)}
+.intent:hover{border-color:var(--brass)}
+.intent b{display:block;font-size:16px}
+.intent span{font-size:13px;color:var(--muted)}
+.brow{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.small{font-size:13px;color:var(--muted)}
+.err{color:#f0a898;font-size:14px;margin:8px 0}
+.icard{width:100%;max-width:560px;background:#f6f0e2;color:#1d2a28;border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.55);border-top:34px solid #c8472f;padding:22px 28px 26px;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,#cfe0e6 31px,#cfe0e6 32px)}
+.icard h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-size:28px;line-height:1.1;background:#f6f0e2;display:inline}
+.icard .sub{background:#f6f0e2;display:inline;color:#4d5f5c;font-size:14px}
+.icard .row{display:flex;gap:18px;margin-bottom:14px}
+.icard .cov{width:84px;height:122px;border-radius:3px 7px 7px 3px;flex:0 0 auto;background-size:cover;background-position:center}
+.icard .sec{margin:12px 0 0;font-size:12px;font-weight:700;color:#8a3a28;background:#f6f0e2;display:inline-block;padding-right:6px}
+.icard p,.icard li{font-size:14.5px;line-height:32px;margin:0;color:#1d2a28}
+.icard ul{margin:0;padding-left:20px}
+.icard .ipill{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;margin:0 6px 0 0;background:#1d2a28;color:#f6f0e2;line-height:20px}
+.icard .act{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.ibtn{border:2px solid #1d2a28;background:#f6f0e2;color:#1d2a28;font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px;min-height:44px}
+.ibtn.main{background:#1d2a28;color:#f6f0e2}
+.icard button:focus-visible{outline:3px solid #c8472f}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--cream);color:#10201f;font-weight:700;font-size:14px;padding:14px 22px;border-radius:999px;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,.5);max-width:90vw}
+.rules{display:grid;grid-template-columns:1fr auto;gap:8px 20px;font-size:14px}
+.rules b{text-align:right;color:#e8b94f}
+.login{max-width:400px;margin:12vh auto 0}
+.login h1{margin:0 0 6px;font-family:'Playfair Display',Georgia,serif;font-size:36px}
+@media (max-width:760px){.app{padding:20px 16px 60px}.q{grid-template-columns:64px 1fr}.two,.three{grid-template-columns:1fr}.dlg{padding:22px 18px}}
+@media (prefers-reduced-motion:reduce){.spine:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="app"><div class="wrap" id="root"></div></div>
+<div id="overlay"></div><div id="toastbox"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="./config.js"></script>
+<script>
+"use strict";
+/* ---------- constants ---------- */
+const PTS = {NEW:100, PHYS:25, AUTH:50, RE:40};
+const ROOMS = {
+  library:{name:"Home Library", acc:"#d9a441", sub:"Everything you own, shelved."},
+  read:{name:"Read", acc:"#e58aa6", sub:"Every finished book, and what it earned."},
+  tbr:{name:"TBR", acc:"#7fd3bd", sub:"Vote, spin, decide what is next."},
+  series:{name:"Series", acc:"#8fb4ff", sub:"What you own, read and still need."}
+};
+const GENRES = ["Contemporary","Contemporary Suspense","Sports","Cowboy","Dark Romance","Dark Rom-Com","Reverse Harem (RH) / Why-Choose","Motorcycle Club (MC)","Mafia","Paranormal","Omegaverse","Romantasy","Billionaire","Secret Society","Alien / Monster"];
+const GCOL = ["#e9b44c","#d9826f","#7fb7d9","#c9a27a","#b9506b","#e58aa6","#9a86d6","#8b8f94","#b04a4a","#8fd0b0","#e2c06b","#a79be0","#6fc2a5","#c9b8e8","#9bd36f"];
+const NOGENRE = "#6f8a8a";
+const FMT = [["physical","Physical"],["audiobook","Audiobook"],["ebook","Ebook"]];
+const OWN = ["","Owned","Want to Own","Borrowed"];
+const gcolor = g => { const i = GENRES.indexOf(g); return i<0 ? NOGENRE : GCOL[i]; };
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today = () => new Date().toISOString().slice(0,10);
+const norm = s => String(s||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+const hash = s => { let h=0; for (const c of String(s)) h=(h*31+c.charCodeAt(0))>>>0; return h; };
+const fmtDate = d => d ? new Date(d+"T12:00:00").toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}) : "";
+const num = v => (v===""||v==null||isNaN(Number(v))) ? null : Number(v);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const nf = n => Number(n).toLocaleString();
+
+/* ---------- state ---------- */
+const S = {
+  sb:null, user:null, books:[], loading:true, room:"library",
+  f:{ lib:{fmt:"all", st:"all", sort:"genre"}, read:{sort:"recent"}, tbr:{sort:"votes", view:"list"} },
+  caseLimit:{library:45, read:45, tbr:45}, spinText:"", spinning:false, pointsOpen:false, busy:"", dlg:null, card:null
+};
+
+/* ---------- db mapping ---------- */
+function fromRow(r){
+  const x = r.extra || {};
+  return { id:r.id, title:r.title, author:r.author, genre:r.genre, sportType:r.sport_type, seriesName:r.series_name,
+    seriesPosition:r.series_position==null?null:Number(r.series_position), formats:r.formats||[], narrator:r.narrator,
+    pageCount:r.page_count, tropes:r.tropes||[], status:r.reading_status, dateFinished:r.date_finished||"",
+    rating:r.rating==null?null:Number(r.rating), heat:r.heat, synopsis:r.synopsis, sillySummary:r.silly_summary,
+    coverUrl:r.cover_url, goodreadsLink:r.goodreads_link, purchaseLink:r.purchase_link, notes:r.notes, review:r.review,
+    wouldRecommend:r.would_recommend, trophy:r.trophy, rereadLog:r.reread_log||[], votes:r.votes||0, historical:!!r.historical,
+    favoriteCatalog:r.favorite_catalog, importedFrom:r.imported_from, yearRead:r.year_read, readOrder:r.read_order,
+    extra:x, createdAt:r.created_at };
+}
+function toRow(b){
+  return { title:b.title, author:b.author||"", genre:b.genre||"", sport_type:b.sportType||"", series_name:b.seriesName||"",
+    series_position:b.seriesPosition??null, formats:b.formats||[], narrator:b.narrator||"", page_count:b.pageCount??null,
+    tropes:b.tropes||[], reading_status:b.status, date_finished:b.dateFinished||null, rating:b.rating??null, heat:b.heat??null,
+    synopsis:b.synopsis||"", silly_summary:b.sillySummary||"", cover_url:b.coverUrl||"", goodreads_link:b.goodreadsLink||"",
+    purchase_link:b.purchaseLink||"", notes:b.notes||"", review:b.review||"", would_recommend:b.wouldRecommend||"",
+    trophy:!!b.trophy, reread_log:b.rereadLog||[], votes:b.votes||0, historical:!!b.historical,
+    favorite_catalog:!!b.favoriteCatalog, imported_from:b.importedFrom||"", year_read:b.yearRead??null,
+    read_order:b.readOrder??null, extra:b.extra||{} };
+}
+function fromImport(o){
+  const extra = {};
+  if (o.progressLog) extra.progress_log = o.progressLog;
+  if (o.altCovers && o.altCovers.length) extra.alt_covers = o.altCovers;
+  if (o.reviewInterview) extra.review_interview = o.reviewInterview;
+  if (o.enrichment) extra.enrichment = o.enrichment;
+  return { title:o.title, author:o.author, genre:o.genre, sportType:o.sportType, seriesName:o.seriesName,
+    seriesPosition:num(o.seriesPosition), formats:o.formats||[], narrator:o.narrator, pageCount:num(o.pageCount),
+    tropes:o.tropes||[], status:o.readingStatus||"TBR", dateFinished:o.dateFinished||"", rating:num(o.rating), heat:num(o.heat),
+    synopsis:o.synopsis, sillySummary:o.sillySummary, coverUrl:o.coverUrl, goodreadsLink:o.goodreadsLink,
+    purchaseLink:o.purchaseLink, notes:o.notes, review:o.review, wouldRecommend:o.wouldRecommend, trophy:!!o.trophy,
+    rereadLog:(o.rereadLog||[]).map(d=>String(d).slice(0,10)), votes:o.votes||0, historical:!!o.historical,
+    favoriteCatalog:!!o.favCatalog, importedFrom:o.importedFrom, yearRead:num(o.yearRead), readOrder:num(o.readOrder), extra };
+}
+
+/* ---------- book logic ---------- */
+const isRead = b => b.status==="Read";
+const ownedFmt = (b, t) => (b.formats||[]).some(f => f.ownership==="Owned" && (!t || f.type===t));
+const isOwned = b => ownedFmt(b);
+const readFormat = b => b.extra.read_format || (ownedFmt(b,"physical") ? "physical" : "");
+const authorKey = a => norm(a);
+
+function readerOrder(list){
+  return list.filter(isRead).slice().sort((a,b) => {
+    const ka = a.historical ? [0,0,""] : (a.dateFinished ? [2,0,a.dateFinished] : [1,a.readOrder??1e9,""]);
+    const kb = b.historical ? [0,0,""] : (b.dateFinished ? [2,0,b.dateFinished] : [1,b.readOrder??1e9,""]);
+    return ka[0]-kb[0] || ka[1]-kb[1] || (ka[2]<kb[2]?-1:ka[2]>kb[2]?1:0) || (a.createdAt||"").localeCompare(b.createdAt||"");
+  });
+}
+/* Lifetime points are derived from the books, so nothing can drift out of sync. */
+function computePoints(list){
+  const seen = new Set(), per = new Map();
+  const parts = {books:0, phys:0, auth:0, re:0}; let nBooks=0,nPhys=0,nAuth=0,nRe=0;
+  for (const b of readerOrder(list)){
+    let p = PTS.NEW; nBooks++; parts.books += PTS.NEW;
+    if (readFormat(b)==="physical"){ p+=PTS.PHYS; parts.phys+=PTS.PHYS; nPhys++; }
+    const k = authorKey(b.author);
+    if (k && !seen.has(k)){ seen.add(k); p+=PTS.AUTH; parts.auth+=PTS.AUTH; nAuth++; }
+    const re = (b.rereadLog||[]).length * PTS.RE; if (re){ p+=re; parts.re+=re; nRe+=(b.rereadLog||[]).length; }
+    per.set(b.id, p);
+  }
+  return {total: parts.books+parts.phys+parts.auth+parts.re, parts, counts:{nBooks,nPhys,nAuth,nRe}, per};
+}
+function authorHistory(b){
+  const k = authorKey(b.author);
+  if (!k) return [];
+  return S.books.filter(x => x.id!==b.id && isRead(x) && authorKey(x.author)===k);
+}
+function sortBooks(list, key){
+  const L = list.slice();
+  const t = (a,b) => a.title.localeCompare(b.title);
+  const by = {
+    genre:(a,b)=> (a.genre||"~").localeCompare(b.genre||"~") || a.author.localeCompare(b.author) || t(a,b),
+    author:(a,b)=> a.author.localeCompare(b.author) || t(a,b),
+    title:t,
+    rating:(a,b)=> (b.rating??-1)-(a.rating??-1) || t(a,b),
+    votes:(a,b)=> b.votes-a.votes || t(a,b),
+    recent:(a,b)=> (b.dateFinished||"").localeCompare(a.dateFinished||"") || (b.readOrder??-1)-(a.readOrder??-1) || t(a,b),
+    unread:(a,b)=> (isRead(a)-isRead(b)) || t(a,b)
+  };
+  return L.sort(by[key]||t);
+}
+function bookByIdx(id){ return S.books.find(b => b.id===id); }
+
+/* ---------- series ---------- */
+function seriesGroups(){
+  const m = new Map();
+  for (const b of S.books){ if (!b.seriesName) continue; const k=norm(b.seriesName); if(!m.has(k)) m.set(k,{name:b.seriesName,books:[]}); m.get(k).books.push(b); }
+  return [...m.values()].map(g => {
+    g.books.sort((a,b)=> (a.seriesPosition??1e9)-(b.seriesPosition??1e9) || a.title.localeCompare(b.title));
+    const max = Math.max(0, ...g.books.map(b=>b.seriesPosition||0), g.books.length);
+    g.max = Math.ceil(max);
+    g.byPos = new Map(); g.books.forEach(b => { if (b.seriesPosition!=null) g.byPos.set(b.seriesPosition,b); });
+    const lastRead = Math.max(0, ...g.books.filter(isRead).map(b=>b.seriesPosition||0));
+    g.next = g.books.find(b => !isRead(b) && b.seriesPosition!=null && b.seriesPosition>lastRead && isOwned(b)) || null;
+    g.nRead = g.books.filter(isRead).length; g.nOwned = g.books.filter(isOwned).length;
+    return g;
+  }).sort((a,b)=>a.name.localeCompare(b.name));
+}
+function detectSeries(){
+  const out = [];
+  for (const b of S.books){
+    if (b.seriesName) continue;
+    let m = b.title.match(/^(.+?)\s+(?:#|Book\s+)?(\d+(?:\.\d+)?)\s*[:\-–]\s+(.+)$/);
+    let s = null;
+    if (m) s = {name:m[1].trim(), pos:Number(m[2])};
+    else if ((m = b.title.match(/\((.+?),?\s*(?:#|Book\s+)(\d+(?:\.\d+)?)\)\s*$/))) s = {name:m[1].trim(), pos:Number(m[2])};
+    if (s && s.name.length>2) out.push({book:b, name:s.name, pos:s.pos});
+  }
+  return out;
+}
+
+/* ---------- toast ---------- */
+let toastT;
+function toast(msg){ const el=$("#toastbox"); el.innerHTML = `<div class="toast" role="status">${esc(msg)}</div>`; clearTimeout(toastT); toastT=setTimeout(()=>el.innerHTML="",3800); }
+
+/* ---------- data ---------- */
+async function loadBooks(){
+  S.loading = true; render();
+  let all = [], from = 0;
+  while (true){
+    const {data, error} = await S.sb.from("books").select("*").order("created_at",{ascending:true}).range(from, from+999);
+    if (error){ toast("Could not load books: "+error.message); break; }
+    all = all.concat(data||[]);
+    if (!data || data.length<1000) break;
+    from += 1000;
+  }
+  S.books = all.map(fromRow); S.loading=false; render();
+}
+async function saveBook(b){
+  const row = toRow(b);
+  if (b.id){
+    const {data,error} = await S.sb.from("books").update(row).eq("id",b.id).select().single();
+    if (error) throw error;
+    const nb = fromRow(data); const i=S.books.findIndex(x=>x.id===b.id); S.books[i]=nb; return nb;
+  }
+  const {data,error} = await S.sb.from("books").insert(row).select().single();
+  if (error) throw error;
+  const nb = fromRow(data); S.books.push(nb); return nb;
+}
+async function removeBook(id){
+  const {error} = await S.sb.from("books").delete().eq("id",id);
+  if (error) throw error; S.books = S.books.filter(b=>b.id!==id);
+}
+function patchFormat(b, type, ownership){
+  const f = (b.formats||[]).filter(x=>x.type!==type); f.push({type, ownership}); return f;
+}
+
+/* ---------- render: shell ---------- */
+function render(){
+  const root = $("#root");
+  if (!S.sb){ root.innerHTML = setupMsg(); return; }
+  if (!S.user){ root.innerHTML = loginView(); return; }
+  const room = ROOMS[S.room];
+  document.documentElement.style.setProperty("--acc", room.acc);
+  const nav = Object.entries(ROOMS).map(([k,v]) => `<button class="navbtn ${S.room===k?"on":""}" data-act="room" data-v="${k}">${esc(v.name)}</button>`).join("");
+  root.innerHTML = `
+    <div class="top">
+      <h1 class="brand">Lara's <em>Library</em></h1>
+      <nav class="nav" aria-label="Rooms">${nav}</nav>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="addbtn" data-act="add">+ Add a book</button>
+        <button class="toolbtn" data-act="data">Data tools</button>
+        <button class="toolbtn" data-act="signout">Sign out</button>
+      </div>
+    </div>
+    <div class="band"><h2>${esc(room.name)}</h2><p>${esc(room.sub)}</p></div>
+    <div id="room">${S.loading ? `<div class="empty">Loading your library…</div>` : roomView()}</div>`;
+}
+function setupMsg(){
+  return `<div class="login"><h1>Almost there</h1><p class="small">Open <b>library/config.js</b> and paste in the project URL and publishable key from Supabase (Project Settings, API Keys). Then reload this page.</p></div>`;
+}
+function loginView(){
+  return `<form class="login" data-form="login">
+    <h1>Lara's <span style="color:var(--brass);font-weight:500">Library</span></h1>
+    <p class="small">Private. Sign in to open the shelves.</p>
+    <div class="field"><label for="em">Email</label><input class="inp" id="em" type="email" autocomplete="username" required></div>
+    <div class="field"><label for="pw">Password</label><input class="inp" id="pw" type="password" autocomplete="current-password" required></div>
+    <div class="err" id="loginerr" role="alert"></div>
+    <button class="main" type="submit">Sign in</button></form>`;
+}
+function roomView(){
+  const P = computePoints(S.books);
+  const reads = S.books.filter(isRead), tbr = S.books.filter(b=>b.status==="TBR"), owned = S.books.filter(isOwned);
+  const y = new Date().getFullYear();
+  const thisYear = reads.filter(b => b.dateFinished && b.dateFinished.startsWith(String(y))).length;
+  let tiles = "", body = "";
+  if (S.room==="library"){
+    tiles = tile(owned.length,"books on your shelves") + tile(owned.filter(b=>!isRead(b)).length,"owned and unread") + tile(new Set(owned.map(b=>authorKey(b.author))).size,"authors in the house") + pointsTile(P);
+    body = libraryBody(owned);
+  } else if (S.room==="read"){
+    const rated = reads.filter(b=>b.rating!=null);
+    const avg = rated.length ? (rated.reduce((s,b)=>s+b.rating,0)/rated.length).toFixed(2) : "–";
+    tiles = tile(reads.length,"books read") + tile(thisYear,`finished in ${y}`) + tile(avg,"average rating") + pointsTile(P);
+    body = readBody(reads, P);
+  } else if (S.room==="tbr"){
+    tiles = tile(tbr.length,"waiting on the TBR") + tile(tbr.filter(isOwned).length,"already owned") + tile(tbr.reduce((s,b)=>s+b.votes,0),"votes cast") + pointsTile(P);
+    body = tbrBody(tbr);
+  } else {
+    const g = seriesGroups();
+    tiles = tile(g.length,"series tracked") + tile(g.filter(x=>x.next).length,"with a next-up book") + tile(g.reduce((s,x)=>s+x.nRead,0),"series books read") + pointsTile(P);
+    body = seriesBody(g);
+  }
+  return `<div class="tiles">${tiles}</div>${S.pointsOpen ? pointsPanel(P):""}${body}`;
+}
+const tile = (n,l) => `<div class="tile"><b>${esc(n)}</b><span>${esc(l)}</span></div>`;
+const pointsTile = P => `<div class="tile"><b>${nf(P.total)}</b><span>lifetime points</span><button class="linkbtn" style="font-size:12px" data-act="points">${S.pointsOpen?"Hide":"Show"} the math</button></div>`;
+function pointsPanel(P){
+  const c=P.counts,p=P.parts;
+  return `<div class="panel"><h3>How points add up</h3><div class="rules">
+    <span>New book: ${nf(c.nBooks)} × ${PTS.NEW}</span><b>${nf(p.books)}</b>
+    <span>Read in physical: ${nf(c.nPhys)} × ${PTS.PHYS}</span><b>${nf(p.phys)}</b>
+    <span>New author: ${nf(c.nAuth)} × ${PTS.AUTH}</span><b>${nf(p.auth)}</b>
+    <span>Reread or relisten: ${nf(c.nRe)} × ${PTS.RE}</span><b>${nf(p.re)}</b></div>
+    <p class="hint">Points are worked out from your books every time, so edits and merges always keep the total honest. Where a past read has no format recorded, an owned physical copy counts as read in physical.</p></div>`;
+}
+
+/* ---------- render: bookcases ---------- */
+function spineBtn(b){
+  const h = 110 + (b.pageCount ? Math.min(b.pageCount,700)/700*80 : hash(b.title)%80);
+  const w = 24 + hash(b.title+"w")%14;
+  return `<button class="spine ${isRead(b)||S.room==="read"?"":"faded"}" style="height:${h|0}px;width:${w}px;background:${gcolor(b.genre)}" data-act="card" data-id="${b.id}" title="${esc(b.title)}" aria-label="${esc(b.title)} by ${esc(b.author)}"><span>${esc(b.title)}</span></button>`;
+}
+function cases(list, roomKey){
+  if (!list.length) return `<div class="empty">Nothing here yet. Add a book, or use Data tools to import your library.</div>`;
+  const lim = S.caseLimit[roomKey]||45, shown = list.slice(0, lim);
+  const shelves = []; for (let i=0;i<shown.length;i+=15) shelves.push(shown.slice(i,i+15));
+  const html = shelves.map(sh => {
+    const rows = []; for (let i=0;i<sh.length;i+=5) rows.push(sh.slice(i,i+5));
+    const first = sh[0], last = sh[sh.length-1];
+    return `<div class="case"><h3>${esc(first.title.slice(0,18))} … ${esc(last.title.slice(0,18))}</h3>${rows.map(r=>`<div class="shelf">${r.map(spineBtn).join("")}</div>`).join("")}</div>`;
+  }).join("");
+  const more = list.length>lim ? `<p class="hint"><button class="chip" data-act="more" data-v="${roomKey}">Show 45 more (${list.length-lim} left)</button></p>` : "";
+  return `<div class="cases">${html}</div>${more}`;
+}
+function legend(list){
+  const used = [...new Set(list.map(b=>b.genre||""))].sort();
+  return `<div class="legend">${used.map(g=>`<span><i style="background:${gcolor(g)}"></i>${esc(g||"No genre yet")}</span>`).join("")}</div>`;
+}
+const chip = (act,v,label,on,extra="") => `<button class="chip ${on?"on":""}" data-act="${act}" data-v="${v}" ${extra} aria-pressed="${!!on}">${esc(label)}</button>`;
+
+function libraryBody(owned){
+  const f = S.f.lib;
+  let list = owned.filter(b => f.fmt==="all" || ownedFmt(b,f.fmt)).filter(b => f.st==="all" || (f.st==="read"?isRead(b):!isRead(b)));
+  list = sortBooks(list, f.sort);
+  return `<div class="ctl">
+    <div class="grp"><span class="lab">Format</span>${chip("lib-fmt","all","All",f.fmt==="all")}${FMT.map(([k,l])=>chip("lib-fmt",k,l,f.fmt===k)).join("")}</div>
+    <div class="grp"><span class="lab">Show</span>${chip("lib-st","all","All",f.st==="all")}${chip("lib-st","read","Read",f.st==="read")}${chip("lib-st","unread","Unread",f.st==="unread")}</div>
+    <div class="grp"><span class="lab">Sort</span>${[["genre","Genre"],["author","Author"],["title","Title"],["rating","Rating"]].map(([k,l])=>chip("lib-sort",k,l,f.sort===k)).join("")}</div></div>
+    ${legend(list)}${cases(list,"library")}
+    <p class="hint">${nf(list.length)} books. Faded spines are unread. Tap any spine to open its card.</p>`;
+}
+
+/* ---------- render: read ---------- */
+function readBody(reads, P){
+  const f = S.f.read;
+  const sorted = sortBooks(reads, f.sort==="recent"?"recent":f.sort);
+  const recent = sortBooks(reads,"recent").slice(0,8);
+  const recentRows = recent.map(b => `<div class="rec"><button class="linkbtn" data-act="card" data-id="${b.id}">${esc(b.title)}</button><span class="meta">${esc(b.author)}${b.dateFinished?" · "+fmtDate(b.dateFinished):""}${b.rating!=null?" · "+b.rating+" stars":""}</span><span class="pts">+${P.per.get(b.id)||0}</span></div>`).join("");
+  return `<div class="panel"><h3>Recently finished</h3>${recentRows||`<p class="small">No finished books yet.</p>`}</div>
+    <div class="ctl"><div class="grp"><span class="lab">Sort the shelves</span>${[["recent","Recent"],["genre","Genre"],["author","Author"],["title","Title"],["rating","Rating"]].map(([k,l])=>chip("read-sort",k,l,f.sort===k)).join("")}</div></div>
+    ${legend(sorted)}${cases(sorted,"read")}`;
+}
+
+/* ---------- render: tbr ---------- */
+function coverStyle(b){ return b.coverUrl ? `background-image:url('${esc(b.coverUrl).replace(/'/g,"%27")}')` : `background:${gcolor(b.genre)}`; }
+function tbrBody(tbr){
+  const f = S.f.tbr;
+  const list = sortBooks(tbr, f.sort);
+  const rows = list.map(b => {
+    const ah = authorHistory(b);
+    const fm = (b.formats||[]).filter(x=>x.ownership && x.ownership!=="N/A").map(x=>`${x.type} (${x.ownership.toLowerCase()})`).join(", ");
+    return `<div class="q"><div class="qcover" style="${coverStyle(b)}">${b.coverUrl?"":esc(b.title.slice(0,24))}</div>
+      <div><button class="linkbtn" data-act="card" data-id="${b.id}">${esc(b.title)}</button>
+        <div class="look">${esc(b.author)}${b.genre?" · "+esc(b.genre):""}</div>
+        <div class="look">${ah.length?`You have read ${ah.length} by this author. `:""}${fm?esc(fm):"No format noted yet."}</div></div>
+      <button class="vote" data-act="vote" data-id="${b.id}" aria-label="Vote to read ${esc(b.title)} sooner">Want to read<b>${b.votes}</b></button></div>`;
+  }).join("");
+  const cs = f.view==="cases" ? `${legend(list)}${cases(list,"tbr")}` : (rows || `<div class="empty">Your TBR is empty.</div>`);
+  return `<div class="spin"><div><b class="serif" style="font-size:20px">Can't decide?</b><div class="small">The spinner favors books with more votes.</div></div>
+    <div class="slot" id="slot" aria-live="polite">${esc(S.spinText||"Press spin")}</div>
+    <button class="main" data-act="spin" ${S.spinning||!tbr.length?"disabled":""}>Spin for my next read</button></div>
+    <div class="ctl"><div class="grp"><span class="lab">View</span>${chip("tbr-view","list","List",f.view==="list")}${chip("tbr-view","cases","Bookcase",f.view==="cases")}</div>
+    <div class="grp"><span class="lab">Sort</span>${[["votes","Votes"],["genre","Genre"],["author","Author"],["title","Title"]].map(([k,l])=>chip("tbr-sort",k,l,f.sort===k)).join("")}</div></div>${cs}`;
+}
+async function spin(){
+  const tbr = S.books.filter(b=>b.status==="TBR"); if (!tbr.length||S.spinning) return;
+  S.spinning = true; const slot = () => $("#slot");
+  for (let i=0;i<18;i++){ const el=slot(); if(!el) break; el.textContent = tbr[Math.floor(Math.random()*tbr.length)].title; await sleep(60+i*12); }
+  let tot = tbr.reduce((s,b)=>s+b.votes+1,0), r = Math.random()*tot, pick = tbr[0];
+  for (const b of tbr){ r -= b.votes+1; if (r<=0){ pick=b; break; } }
+  S.spinning = false; S.spinText = `${pick.title}, ${pick.author}`; render(); S.card = pick.id; showCard(pick.id);
+}
+
+/* ---------- render: series ---------- */
+function seriesBody(groups){
+  const det = detectSeries();
+  const tools = `<div class="ctl"><button class="ghost" data-act="series-detect">Find series from titles${det.length?` (${det.length} possible)`:""}</button></div>`;
+  if (!groups.length) return tools + `<div class="empty">No series yet. Add a series name to a book, or let the app suggest some from your titles.</div>`;
+  return tools + groups.map(g => {
+    const dots = []; for (let i=1;i<=g.max;i++){
+      const b = g.byPos.get(i);
+      if (!b) dots.push(`<span class="dot" style="border:2px dashed #3b6268;color:var(--muted)" title="Book ${i}: not tracked">${i}</span>`);
+      else { const st = isRead(b)?`background:var(--rose)`:isOwned(b)?`background:var(--brass)`:`border-color:var(--mint);color:var(--mint)`;
+        dots.push(`<button class="dot" style="${st}" data-act="card" data-id="${b.id}" title="${esc(b.title)}">${i}</button>`); }
+    }
+    return `<div class="srow"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px"><b class="serif" style="font-size:20px">${esc(g.name)}</b><span class="small">${g.nRead} read · ${g.nOwned} owned · ${g.books.length} tracked</span></div>
+      <div class="dots">${dots.join("")}</div>
+      <div class="small">${g.next?`Next up: <b style="color:var(--cream)">${esc(g.next.title)}</b>`:"Nothing owned and waiting."} · pink read, brass owned, mint wanted, dashed missing</div></div>`;
+  }).join("");
+}
+
+/* ---------- dialogs ---------- */
+function openDlg(html){ $("#overlay").innerHTML = `<div class="mask" data-act="maskclose"><div class="dlg" role="dialog" aria-modal="true">${html}</div></div>`; const f=$("#overlay").querySelector("input,textarea,select"); if(f) f.focus(); }
+function closeDlg(){ $("#overlay").innerHTML=""; S.dlg=null; }
+function showCard(id){
+  const b = bookByIdx(id); if (!b) return;
+  const ah = authorHistory(b), P = computePoints(S.books);
+  const fm = (b.formats||[]).filter(x=>x.ownership && x.ownership!=="N/A").map(x=>`${x.type}: ${x.ownership}`);
+  const read = isRead(b);
+  const pills = [b.genre, b.sportType, b.seriesName?`${b.seriesName}${b.seriesPosition!=null?" #"+b.seriesPosition:""}`:"", b.heat!=null?`Heat ${b.heat}`:"", b.rating!=null?`${b.rating} stars`:""].filter(Boolean).map(x=>`<span class="ipill">${esc(x)}</span>`).join("");
+  const sec = (t,inner) => inner ? `<div><span class="sec">${t}</span></div>${inner}` : "";
+  const notes = read ? (b.review||b.notes) : "";
+  $("#overlay").innerHTML = `<div class="mask" data-act="maskclose"><div class="icard" role="dialog" aria-modal="true" aria-label="${esc(b.title)}">
+    <div class="row">${b.coverUrl?`<div class="cov" style="background-image:url('${esc(b.coverUrl).replace(/'/g,"%27")}')"></div>`:""}
+      <div><h2>${esc(b.title)}</h2><br><span class="sub">${esc(b.author)}${b.narrator?" · narrated by "+esc(b.narrator):""}${b.pageCount?" · "+b.pageCount+" pages":""}</span>
+      <div style="margin-top:8px">${pills}</div></div></div>
+    ${read ? `<p>${b.historical?"Read before 2025. No details recorded.":`Finished ${b.dateFinished?fmtDate(b.dateFinished):"in 2025"}. Earned ${nf(P.per.get(b.id)||0)} points.`}${(b.rereadLog||[]).length?` Revisited ${(b.rereadLog||[]).length}×.`:""}</p>`
+           : `<p>${b.status==="Currently Reading"?"Reading now.":b.status==="DNF"?"Did not finish.":`On the TBR with ${b.votes} vote${b.votes===1?"":"s"}.`}</p>`}
+    ${sec("SILLY SUMMARY", b.sillySummary?`<p>${esc(b.sillySummary)}</p>`:"")}
+    ${sec(read?"MY NOTES":"SYNOPSIS", read ? (notes?`<p>${esc(notes)}</p>`:"") : (b.synopsis?`<p>${esc(b.synopsis)}</p>`:`<p>No synopsis saved yet.</p>`))}
+    ${read && b.synopsis ? sec("SYNOPSIS",`<p>${esc(b.synopsis)}</p>`):""}
+    ${sec("TROPES", (b.tropes||[]).length?`<p>${b.tropes.map(esc).join(", ")}</p>`:"")}
+    ${sec("THIS AUTHOR", `<p>${ah.length?`${ah.length} other${ah.length===1?"":"s"} read: ${ah.slice(0,4).map(x=>esc(x.title)).join(", ")}${ah.length>4?` and ${ah.length-4} more`:""}.`:(read?"No other books from this author read yet.":"A new author for you. Reading this earns the new-author bonus.")}</p>`)}
+    ${(b.extra.enrichment&&b.extra.enrichment.check&&b.extra.enrichment.check.length)?sec("RESEARCH NOTE",`<p>Auto-filled from the web. Please check: ${b.extra.enrichment.check.map(esc).join(", ")}.${b.extra.enrichment.note?" "+esc(b.extra.enrichment.note):""}</p>`):""}
+    ${sec("FORMATS", fm.length?`<p>${fm.map(esc).join(" · ")}</p>`:"")}
+    ${b.goodreadsLink||b.purchaseLink?`<p>${b.goodreadsLink?`<a href="${esc(b.goodreadsLink)}" target="_blank" rel="noopener">Goodreads</a> `:""}${b.purchaseLink?`<a href="${esc(b.purchaseLink)}" target="_blank" rel="noopener">Where to buy</a>`:""}</p>`:""}
+    <div class="act">
+      ${!read?`<button class="ibtn main" data-act="finish" data-id="${b.id}">I finished it</button>`:""}
+      ${b.status==="TBR"?`<button class="ibtn" data-act="vote" data-id="${b.id}" data-keep="1">Want to read (${b.votes})</button><button class="ibtn" data-act="startread" data-id="${b.id}">Start reading</button>`:""}
+      ${read?`<button class="ibtn main" data-act="relisten" data-id="${b.id}">Relisten / reread (+${PTS.RE})</button>`:""}
+      <button class="ibtn" data-act="edit" data-id="${b.id}">Edit</button>
+      <button class="ibtn" data-act="closedlg">Close</button></div></div></div>`;
+}
+
+/* ----- book form ----- */
+function fmtSelects(b){
+  return FMT.map(([k,l]) => { const cur = ((b?.formats||[]).find(f=>f.type===k)||{}).ownership||"";
+    return `<div class="field"><label for="fm-${k}">${l}</label><select class="inp" id="fm-${k}">${OWN.map(o=>`<option ${o===cur?"selected":""} value="${o}">${o||"Not tracked"}</option>`).join("")}</select></div>`; }).join("");
+}
+function bookForm(b, mode){
+  const v = (k,d="") => esc(b?.[k] ?? d);
+  const stat = b?.status || "TBR";
+  const showRead = stat==="Read";
+  return `<form data-form="book" data-id="${b?.id||""}">
+    <div class="two"><div class="field"><label for="f-title">Title</label><input class="inp" id="f-title" value="${v("title")}" required></div>
+    <div class="field"><label for="f-author">Author</label><input class="inp" id="f-author" value="${v("author")}"></div></div>
+    <div class="three"><div class="field"><label for="f-status">Status</label><select class="inp" id="f-status">${["TBR","Currently Reading","Read","DNF"].map(s=>`<option ${s===stat?"selected":""}>${s}</option>`).join("")}</select></div>
+    <div class="field"><label for="f-date">Date finished</label><input class="inp" id="f-date" type="date" value="${esc(b?.dateFinished||"")}"></div>
+    <div class="field"><label for="f-rating">Rating (0 to 5)</label><input class="inp" id="f-rating" type="number" min="0" max="5" step="0.25" value="${esc(b?.rating??"")}"></div></div>
+    <div class="three"><div class="field"><label for="f-genre">Genre</label><input class="inp" id="f-genre" list="genres" value="${v("genre")}"><datalist id="genres">${GENRES.map(g=>`<option value="${esc(g)}">`).join("")}</datalist></div>
+    <div class="field"><label for="f-heat">Heat (1 to 5, 5 = 5+)</label><input class="inp" id="f-heat" type="number" min="0" max="5" value="${esc(b?.heat??"")}"></div>
+    <div class="field"><label for="f-pages">Pages</label><input class="inp" id="f-pages" type="number" min="0" value="${esc(b?.pageCount??"")}"></div></div>
+    <div class="three"><div class="field"><label for="f-series">Series</label><input class="inp" id="f-series" value="${v("seriesName")}"></div>
+    <div class="field"><label for="f-pos">Book number</label><input class="inp" id="f-pos" type="number" step="0.5" min="0" value="${esc(b?.seriesPosition??"")}"></div>
+    <div class="field"><label for="f-narr">Narrator</label><input class="inp" id="f-narr" value="${v("narrator")}"></div></div>
+    <div class="three">${fmtSelects(b)}</div>
+    <div class="field"><label for="f-tropes">Tropes (comma separated)</label><input class="inp" id="f-tropes" value="${esc((b?.tropes||[]).join(", "))}"></div>
+    <div class="field"><label for="f-syn">Synopsis</label><textarea class="inp" id="f-syn">${v("synopsis")}</textarea></div>
+    <div class="field"><label for="f-notes">My notes or review</label><textarea class="inp" id="f-notes">${esc(b?.review||b?.notes||"")}</textarea></div>
+    <div class="two"><div class="field"><label for="f-cover">Cover image URL</label><input class="inp" id="f-cover" value="${v("coverUrl")}"></div>
+    <div class="field"><label for="f-gr">Goodreads link</label><input class="inp" id="f-gr" value="${v("goodreadsLink")}"></div></div>
+    <div class="err" id="ferr" role="alert"></div>
+    <div class="actions"><button class="main" type="submit">${mode==="edit"?"Save changes":"Save book"}</button>
+    <button class="ghost" type="button" data-act="closedlg">Cancel</button>
+    ${b?.id?`<button class="ghost danger" type="button" data-act="delete" data-id="${b.id}">Delete</button>`:""}</div></form>`;
+}
+function readBookForm(base){
+  const g = id => { const el=$("#"+id); return el?el.value.trim():""; };
+  const b = {...(base||{})};
+  b.title=g("f-title"); b.author=g("f-author"); b.status=g("f-status"); b.dateFinished=g("f-date");
+  b.rating=num(g("f-rating")); b.genre=g("f-genre"); b.heat=num(g("f-heat")); b.pageCount=num(g("f-pages"));
+  b.seriesName=g("f-series"); b.seriesPosition=num(g("f-pos")); b.narrator=g("f-narr");
+  b.tropes=g("f-tropes").split(",").map(x=>x.trim()).filter(Boolean);
+  b.synopsis=g("f-syn"); b.cover=undefined; b.coverUrl=g("f-cover"); b.goodreadsLink=g("f-gr");
+  const notes=g("f-notes"); if (b.status==="Read") b.review=notes, b.notes=base?.notes||""; else b.notes=notes;
+  b.formats = FMT.map(([k])=>({type:k, ownership:g("fm-"+k)})).filter(f=>f.ownership);
+  b.extra = {...(base?.extra||{})}; b.tropes=b.tropes||[]; b.votes=base?.votes||0;
+  if (b.status==="Read" && !b.dateFinished && !base?.id) b.dateFinished = today();
+  if (b.status==="Read" && b.dateFinished) b.historical = false;
+  return b;
+}
+
+/* ----- add wizard ----- */
+const INTENTS = [
+  ["finished","I finished a book","Log it, rate it, and earn points."],
+  ["reading","I am reading one now","Shelve it as in progress."],
+  ["want","I want to read one","Straight to the TBR."],
+  ["buy","I want to buy one","TBR, flagged as want to own."],
+  ["bought","I bought one or more","Add several at once. Unread ones land in the TBR and your library."]
+];
+function addStart(){
+  S.dlg = {type:"add"};
+  openDlg(`<h2>Add a book</h2><p class="small">What happened?</p>${INTENTS.map(([k,t,d])=>`<button class="intent" data-act="intent" data-v="${k}"><b>${t}</b><span>${d}</span></button>`).join("")}<div class="actions"><button class="ghost" data-act="closedlg">Cancel</button></div>`);
+}
+function addIntent(k){
+  S.dlg = {type:"add", intent:k};
+  if (k==="bought") return boughtForm();
+  const base = {status:{finished:"Read",reading:"Currently Reading",want:"TBR",buy:"TBR"}[k], dateFinished:k==="finished"?today():"",
+    formats:k==="buy"?[{type:"physical",ownership:"Want to Own"}]:[]};
+  const title = INTENTS.find(i=>i[0]===k)[1];
+  openDlg(`<h2>${esc(title)}</h2><p class="small">Fill in what you know. Everything is editable later.</p>${bookForm(base,"add")}`);
+}
+function boughtRow(){
+  return `<div class="brow" data-brow><div class="two"><div class="field"><label>Title</label><input class="inp" data-r="title"></div>
+    <div class="field"><label>Author</label><input class="inp" data-r="author"></div></div>
+    <div class="two"><div class="field"><label>Format you bought</label><select class="inp" data-r="fmt"><option value="physical">Physical</option><option value="audiobook">Audiobook</option><option value="ebook">Ebook</option></select></div>
+    <div class="field"><label>Have you read it?</label><select class="inp" data-r="read"><option value="no">Not yet</option><option value="yes">Yes, I have read it</option></select></div></div></div>`;
+}
+function boughtForm(){
+  openDlg(`<h2>I bought one or more</h2><p class="small">Unread books go to the TBR and your library. Books you have read are marked owned, or added as a read before 2025 with no details if they are not on your list.</p>
+    <form data-form="bought"><div id="brows">${boughtRow()}</div><button class="ghost" type="button" data-act="addrow">+ Another book</button>
+    <div class="err" id="ferr" role="alert"></div><div class="actions"><button class="main" type="submit">Add to my library</button><button class="ghost" type="button" data-act="closedlg">Cancel</button></div></form>`);
+}
+async function submitBought(){
+  const rows = [...document.querySelectorAll("[data-brow]")].map(r => { const g=k=>r.querySelector(`[data-r="${k}"]`).value.trim(); return {title:g("title"),author:g("author"),fmt:g("fmt"),read:g("read")==="yes"}; }).filter(r=>r.title);
+  if (!rows.length){ $("#ferr").textContent="Add at least one title."; return; }
+  let nNew=0,nOwn=0,nHist=0;
+  for (const r of rows){
+    const ex = S.books.find(b => norm(b.title)===norm(r.title) && (!r.author || norm(b.author)===norm(r.author)));
+    if (ex){ ex.formats = patchFormat(ex, r.fmt, "Owned"); await saveBook(ex); nOwn++; }
+    else if (r.read){ await saveBook({title:r.title, author:r.author, status:"Read", historical:true, formats:[{type:r.fmt,ownership:"Owned"}], importedFrom:"Added as pre-2025 read", extra:{}}); nHist++; }
+    else { await saveBook({title:r.title, author:r.author, status:"TBR", formats:[{type:r.fmt,ownership:"Owned"}], extra:{}}); nNew++; }
+  }
+  closeDlg(); render();
+  toast([nNew&&`${nNew} added to TBR and library`, nOwn&&`${nOwn} marked owned`, nHist&&`${nHist} added as pre-2025 reads`].filter(Boolean).join(" · "));
+}
+
+/* ----- data tools ----- */
+function dataDlg(){
+  openDlg(`<h2>Data tools</h2>
+    <div class="panel"><h3>Import a library file</h3><p class="small">Choose the library-import.json file (or a backup made here). Books already in your library are skipped, so it is safe to run twice.</p>
+    <input type="file" id="impfile" accept="application/json,.json" class="inp"><div class="err" id="imperr" role="alert"></div><div class="small" id="impprog"></div>
+    <div class="actions"><button class="main" data-act="runimport">Import</button></div></div>
+    <div class="panel"><h3>Back up everything</h3><p class="small">Downloads all your books as a JSON file. Do this now and then.</p><div class="actions"><button class="ghost" data-act="export">Download backup</button></div></div>
+    <div class="actions"><button class="ghost" data-act="closedlg">Close</button></div>`);
+}
+async function runImport(){
+  const file = $("#impfile").files[0]; const err=$("#imperr"), prog=$("#impprog"); err.textContent="";
+  if (!file){ err.textContent="Choose a file first."; return; }
+  let data; try { data = JSON.parse(await file.text()); } catch(e){ err.textContent="That file is not valid JSON."; return; }
+  const arr = Array.isArray(data) ? data : (data.books||[]);
+  if (!arr.length){ err.textContent="No books found in that file."; return; }
+  const have = new Set(S.books.map(b=>norm(b.title)+"|"+norm(b.author)));
+  const fresh = []; let skipped=0;
+  for (const o of arr){ if (!o.title) continue; const b = o.reading_status ? fromRow(o) : fromImport(o); const k=norm(b.title)+"|"+norm(b.author); if (have.has(k)){skipped++;continue;} have.add(k); fresh.push(b); }
+  let done=0;
+  for (let i=0;i<fresh.length;i+=100){
+    const chunk = fresh.slice(i,i+100).map(toRow);
+    const {data:ins,error} = await S.sb.from("books").insert(chunk).select();
+    if (error){ err.textContent=`Stopped after ${done} books: ${error.message}`; await loadBooks(); return; }
+    done += ins.length; prog.textContent = `Imported ${done} of ${fresh.length}…`;
+  }
+  await loadBooks();
+  prog.textContent = `Done. ${done} imported, ${skipped} already there.`;
+}
+function exportData(){
+  const blob = new Blob([JSON.stringify({app:"lara-library",exportedAt:new Date().toISOString(),books:S.books.map(b=>({id:b.id,...toRow(b)}))},null,1)],{type:"application/json"});
+  const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=`library-backup-${today()}.json`; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+function seriesDlg(){
+  const det = detectSeries();
+  if (!det.length){ openDlg(`<h2>Find series</h2><p class="small">No titles looked like "Series Name 3: Title" or "(Series, #3)". Add series names by editing a book.</p><div class="actions"><button class="ghost" data-act="closedlg">Close</button></div>`); return; }
+  openDlg(`<h2>Possible series</h2><p class="small">Guessed from title patterns. Untick anything wrong, then apply. Check the numbers.</p>
+    <form data-form="series">${det.map((d,i)=>`<label class="brow" style="display:flex;gap:12px;align-items:center"><input type="checkbox" checked data-i="${i}"><span><b>${esc(d.book.title)}</b><br><span class="small">→ ${esc(d.name)} #${d.pos}</span></span></label>`).join("")}
+    <div class="actions"><button class="main" type="submit">Apply</button><button class="ghost" type="button" data-act="closedlg">Cancel</button></div></form>`);
+  S.dlg = {type:"series", det};
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", async e => {
+  const t = e.target.closest("[data-act]"); if (!t) return;
+  const act = t.dataset.act, v = t.dataset.v, id = t.dataset.id;
+  if (act==="maskclose"){ if (e.target===t) closeDlg(); return; }
+  try {
+    switch (act){
+      case "room": S.room=v; render(); break;
+      case "add": addStart(); break;
+      case "intent": addIntent(v); break;
+      case "addrow": $("#brows").insertAdjacentHTML("beforeend", boughtRow()); break;
+      case "closedlg": closeDlg(); break;
+      case "data": dataDlg(); break;
+      case "signout": await S.sb.auth.signOut(); break;
+      case "points": S.pointsOpen=!S.pointsOpen; render(); break;
+      case "more": S.caseLimit[v]+=45; render(); break;
+      case "lib-fmt": S.f.lib.fmt=v; render(); break;
+      case "lib-st": S.f.lib.st=v; render(); break;
+      case "lib-sort": S.f.lib.sort=v; render(); break;
+      case "read-sort": S.f.read.sort=v; render(); break;
+      case "tbr-sort": S.f.tbr.sort=v; render(); break;
+      case "tbr-view": S.f.tbr.view=v; render(); break;
+      case "card": showCard(id); break;
+      case "edit": { const b=bookByIdx(id); openDlg(`<h2>Edit book</h2>${bookForm(b,"edit")}`); break; }
+      case "vote": { const b=bookByIdx(id); b.votes+=1; await saveBook(b); render(); if (t.dataset.keep) showCard(id); else toast(`Vote counted. ${b.title} has ${b.votes}.`); break; }
+      case "spin": spin(); break;
+      case "startread": { const b=bookByIdx(id); b.status="Currently Reading"; await saveBook(b); render(); showCard(id); toast("Moved to reading now"); break; }
+      case "finish": {
+        const b=bookByIdx(id), before=computePoints(S.books).total;
+        b.status="Read"; b.dateFinished=today(); b.historical=false; await saveBook(b);
+        const gain = computePoints(S.books).total-before; render(); showCard(id);
+        toast(`Finished! +${gain} points`); break; }
+      case "relisten": { const b=bookByIdx(id); b.rereadLog=[...(b.rereadLog||[]), today()]; await saveBook(b); render(); showCard(id); toast(`Relisten logged. +${PTS.RE} points`); break; }
+      case "delete": { if (!t.dataset.sure){ t.dataset.sure="1"; t.textContent="Tap again to delete for good"; break; } await removeBook(id); closeDlg(); render(); toast("Book deleted"); break; }
+      case "runimport": await runImport(); break;
+      case "export": exportData(); break;
+      case "series-detect": seriesDlg(); break;
+    }
+  } catch(err){ toast("Something went wrong: "+(err.message||err)); }
+});
+document.addEventListener("submit", async e => {
+  const f = e.target.closest("[data-form]"); if (!f) return; e.preventDefault();
+  const kind = f.dataset.form;
+  try {
+    if (kind==="login"){
+      const {error} = await S.sb.auth.signInWithPassword({email:$("#em").value.trim(), password:$("#pw").value});
+      if (error) $("#loginerr").textContent = "Could not sign in: "+error.message;
+    } else if (kind==="book"){
+      const id = f.dataset.id, base = id ? bookByIdx(id) : null;
+      const b = readBookForm(base);
+      if (!b.title){ $("#ferr").textContent="Title is required."; return; }
+      const dup = !id && S.books.find(x=>norm(x.title)===norm(b.title) && norm(x.author)===norm(b.author));
+      if (dup && !f.dataset.dupok){ f.dataset.dupok="1"; $("#ferr").textContent="That title is already in your library. Press save again to add it anyway."; return; }
+      const before = computePoints(S.books).total;
+      const saved = await saveBook(b);
+      closeDlg(); render();
+      const gain = computePoints(S.books).total-before;
+      toast(gain>0 && !id ? `Saved. +${gain} points` : "Saved");
+      if (id) showCard(saved.id);
+    } else if (kind==="bought"){ await submitBought();
+    } else if (kind==="series"){
+      const picks = [...f.querySelectorAll("input[type=checkbox]:checked")].map(c=>S.dlg.det[Number(c.dataset.i)]);
+      for (const p of picks){ p.book.seriesName=p.name; p.book.seriesPosition=p.pos; await saveBook(p.book); }
+      closeDlg(); render(); toast(`${picks.length} books added to series`);
+    }
+  } catch(err){ const el=$("#ferr")||$("#loginerr"); if (el) el.textContent="Could not save: "+(err.message||err); else toast("Error: "+(err.message||err)); }
+});
+document.addEventListener("keydown", e => { if (e.key==="Escape" && $("#overlay").innerHTML) closeDlg(); });
+
+/* ---------- boot ---------- */
+(function boot(){
+  const c = window.LIBRARY_CONFIG||{};
+  const ok = c.SUPABASE_URL && !/PASTE_/.test(c.SUPABASE_URL) && c.SUPABASE_PUBLISHABLE_KEY && !/PASTE_/.test(c.SUPABASE_PUBLISHABLE_KEY) && window.supabase;
+  if (!ok){ render(); return; }
+  S.sb = window.supabase.createClient(c.SUPABASE_URL, c.SUPABASE_PUBLISHABLE_KEY);
+  S.sb.auth.onAuthStateChange((ev, session) => {
+    const had = !!S.user; S.user = session?.user || null;
+    if (S.user && !had) loadBooks(); else if (!S.user){ S.books=[]; closeDlg(); render(); }
+  });
+  S.sb.auth.getSession().then(({data}) => { if (!data.session) render(); });
+})();
+</script>
+</body>
+</html>
