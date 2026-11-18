@@ -114,8 +114,9 @@ textarea.inp{min-height:84px;resize:vertical}
 <body>
 <div class="app"><div class="wrap" id="root"></div></div>
 <div id="overlay"></div><div id="toastbox"></div>
-<script src="./supabase.min.js"></script>
-<script src="./config.js?v=2"></script>
+<script>window.__errs=[];window.addEventListener("error",function(e){window.__errs.push((e.target&&e.target.src)?("blocked or missing: "+e.target.src.split("/").pop()):(e.message||"error"))},true)</script>
+<script src="/library/sb-client.js?v=1"></script>
+<script src="/library/config.js?v=2"></script>
 <script>
 "use strict";
 /* ---------- constants ---------- */
@@ -323,7 +324,7 @@ function render(){
     <div id="room">${S.loading ? `<div class="empty">Loading your library…</div>` : roomView()}</div>`;
 }
 function setupMsg(){
-  if (!window.supabase) return `<div class="login"><h1>Could not start</h1><p class="small">The sign-in code did not load. Reload the page. If it keeps happening, turn off any ad or content blocker for this site, or try another network.</p></div>`;
+  if (!window.supabase) return `<div class="login"><h1>Could not start</h1><p class="small">The sign-in code did not load. Reload the page. If it keeps happening, turn off any ad or content blocker for this site, or try another network.</p><p class="small">Details for support: ${esc((window.__errs||[]).join("; ")||"no error reported")}</p></div>`;
   return `<div class="login"><h1>Almost there</h1><p class="small">Open <b>library/config.js</b> and paste in the project URL and publishable key from Supabase (Project Settings, API Keys). Then reload this page.</p></div>`;
 }
 function loginView(){
