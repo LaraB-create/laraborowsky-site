@@ -114,8 +114,8 @@ textarea.inp{min-height:84px;resize:vertical}
 <body>
 <div class="app"><div class="wrap" id="root"></div></div>
 <div id="overlay"></div><div id="toastbox"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="./config.js"></script>
+<script src="./supabase.min.js"></script>
+<script src="./config.js?v=2"></script>
 <script>
 "use strict";
 /* ---------- constants ---------- */
@@ -323,6 +323,7 @@ function render(){
     <div id="room">${S.loading ? `<div class="empty">Loading your library…</div>` : roomView()}</div>`;
 }
 function setupMsg(){
+  if (!window.supabase) return `<div class="login"><h1>Could not start</h1><p class="small">The sign-in code did not load. Reload the page. If it keeps happening, turn off any ad or content blocker for this site, or try another network.</p></div>`;
   return `<div class="login"><h1>Almost there</h1><p class="small">Open <b>library/config.js</b> and paste in the project URL and publishable key from Supabase (Project Settings, API Keys). Then reload this page.</p></div>`;
 }
 function loginView(){
